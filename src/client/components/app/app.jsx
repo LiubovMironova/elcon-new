@@ -9,7 +9,7 @@ import { PAGES } from '../../routes/pages';
 import { bemClassNameFactory } from '../../utils/bem';
 import { sayByeAC, sayHiAC } from '../../redux/actions/app-actions';
 import { fetchUserStartAC, fetchUserSuccessAC, fetchUserErrorAC } from '../../redux/actions/user-actions';
-import { fetchPostsStartAC, fetchPostsSuccessAC, fetchPostsErrorAC } from '../../redux/actions/post-actions';
+import { fetchPostsThunkAC } from '../../redux/actions/post-actions';
 import { selectSay } from '../../redux/selectors/app-selectors';
 import { selectPathname } from '../../redux/selectors/router-selectors';
 import { selectUser, selectIsUserFetching } from '../../redux/selectors/user-selectors';
@@ -44,9 +44,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   fetchUserStart: fetchUserStartAC,
   fetchUserSuccess: fetchUserSuccessAC,
   fetchUserError: fetchUserErrorAC,
-  fetchPostsStart: fetchPostsStartAC,
-  fetchPostsSuccess: fetchPostsSuccessAC,
-  fetchPostsError: fetchPostsErrorAC
+  fetchPosts: fetchPostsThunkAC
 }, dispatch);
 
 class App extends Component {
@@ -68,9 +66,7 @@ class App extends Component {
     fetchUserStart: Type.func,
     fetchUserSuccess: Type.func,
     fetchUserError: Type.func,
-    fetchPostsStart: Type.func,
-    fetchPostsSuccess: Type.func,
-    fetchPostsError: Type.func
+    fetchPosts: Type.func
   };
 
   static defaultProps = {
@@ -117,18 +113,8 @@ class App extends Component {
     }
   };
 
-  handleFetchPosts = async () => {
-    const { fetchPostsStart, fetchPostsSuccess, fetchPostsError } = this.props;
-    try {
-      fetchPostsStart();
-      const posts = await fetch(PAGES.API.fetchPosts.path);
-      const postsResult = await posts.json();
-      console.log('postsResult', postsResult);
-      fetchPostsSuccess(postsResult);
-    } catch (e) {
-      console.error(e);
-      fetchPostsError();
-    }
+  handleFetchPosts = () => {
+    this.props.fetchPosts();
   };
 
   componentDidMount() {
