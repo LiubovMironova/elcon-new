@@ -1,4 +1,4 @@
-# React Redux Tasks
+# React Redux Challenge
 
 Список заданий чтобы потренироваться с Redux
 
