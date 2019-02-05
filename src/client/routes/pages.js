@@ -7,6 +7,10 @@ export const PAGES = {
     name: 'info',
     path: '/info'
   },
+  login: {
+    name: 'login',
+    path: '/login'
+  },
   page404: {
     name: 'page404',
     path: '/page404'

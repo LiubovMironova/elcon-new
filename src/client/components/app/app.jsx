@@ -95,6 +95,10 @@ class App extends Component {
     this.props.doRoute(PAGES.info.path);
   };
 
+  handleRouteToLoginPage = () => {
+    this.props.doRoute(PAGES.login.path);
+  };
+
   handleRouteToPage404 = () => {
     this.props.doRoute(PAGES.page404.path);
   };
@@ -171,6 +175,7 @@ class App extends Component {
         </div>
         <div><Link to={ PAGES.home.path }>Home Page</Link></div>
         <div><Link to={ PAGES.info.path }>Info Page</Link></div>
+        <div><Link to={ PAGES.login.path }>Login Page</Link></div>
         <div><Link to={ PAGES.page404.path }>Page 404</Link></div>
       </div>
     );
