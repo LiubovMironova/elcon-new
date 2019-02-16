@@ -167,8 +167,8 @@ class App extends Component {
         </nav>
         {/* ******************************************** */}
         {/* <h1>{appName}</h1> */}
-        <div className={cn("header")}>
-          {/* {this.renderMenu()}
+        {/* <div className={cn("header")}>
+          {this.renderMenu()}
           {this.renderTestButton()}
           <div className={cn("button-block")}>
             <h2>Buttons Redux</h2>
@@ -176,8 +176,8 @@ class App extends Component {
             {this.renderRoutingButtons()}
             {this.renderUserButtons()}
           </div>
-          {this.renderThunkButton()} */}
-        </div>
+          {this.renderThunkButton()}
+        </div> */}
         {children}
         <div className={cn("footer")} />
       </div>
