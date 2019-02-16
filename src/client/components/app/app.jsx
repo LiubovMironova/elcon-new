@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import Type from 'prop-types';
-import { Link } from 'react-router-dom';
-import { push } from 'connected-react-router';
-import elbrusImg from './elbrus.png';
-import { PAGES } from '../../routes/pages';
-import { bemClassNameFactory } from '../../utils/bem';
-import { sayByeAC, sayHiAC } from '../../redux/actions/app-actions';
-import { fetchUserStartAC, fetchUserSuccessAC, fetchUserErrorAC } from '../../redux/actions/user-actions';
-import { fetchPostsThunkAC } from '../../redux/actions/post-actions';
-import { selectSay } from '../../redux/selectors/app-selectors';
-import { selectPathname } from '../../redux/selectors/router-selectors';
-import { selectUser, selectIsUserFetching } from '../../redux/selectors/user-selectors';
-import { selectPosts, selectIsPostsFetching } from '../../redux/selectors/post-selectors';
-import './app.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import Type from "prop-types";
+import { Link } from "react-router-dom";
+import { push } from "connected-react-router";
+import elbrusImg from "./elbrus.png";
+import { PAGES } from "../../routes/pages";
+import { bemClassNameFactory } from "../../utils/bem";
+import { sayByeAC, sayHiAC } from "../../redux/actions/app-actions";
+import { fetchUserStartAC, fetchUserSuccessAC, fetchUserErrorAC } from "../../redux/actions/user-actions";
+import { fetchPostsThunkAC } from "../../redux/actions/post-actions";
+import { selectSay } from "../../redux/selectors/app-selectors";
+import { selectPathname } from "../../redux/selectors/router-selectors";
+import { selectUser, selectIsUserFetching } from "../../redux/selectors/user-selectors";
+import { selectPosts, selectIsPostsFetching } from "../../redux/selectors/post-selectors";
+import "./app.css";
 
-const cn = bemClassNameFactory('app');
+const cn = bemClassNameFactory("app");
 
 const mapStateToProps = state => ({
   say: selectSay(state),
@@ -37,15 +37,19 @@ const mapStateToProps = state => ({
 //   fetchUserError: () => dispatch(fetchUserErrorAC())
 // });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  sayBye: sayByeAC,
-  sayHi: sayHiAC,
-  doRoute: push,
-  fetchUserStart: fetchUserStartAC,
-  fetchUserSuccess: fetchUserSuccessAC,
-  fetchUserError: fetchUserErrorAC,
-  fetchPosts: fetchPostsThunkAC
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      sayBye: sayByeAC,
+      sayHi: sayHiAC,
+      doRoute: push,
+      fetchUserStart: fetchUserStartAC,
+      fetchUserSuccess: fetchUserSuccessAC,
+      fetchUserError: fetchUserErrorAC,
+      fetchPosts: fetchPostsThunkAC
+    },
+    dispatch
+  );
 
 class App extends Component {
   static propTypes = {
@@ -69,10 +73,10 @@ class App extends Component {
     fetchPosts: Type.func
   };
 
-  static defaultProps = {
-    appName: 'Default Name',
-    posts: []
-  };
+  // static defaultProps = {
+  //   appName: "Default Name",
+  //   posts: []
+  // };
 
   state = {
     buttonActive: false
@@ -95,6 +99,10 @@ class App extends Component {
     this.props.doRoute(PAGES.info.path);
   };
 
+  handleRouteToLoginPage = () => {
+    this.props.doRoute(PAGES.login.path);
+  };
+
   handleRouteToPage404 = () => {
     this.props.doRoute(PAGES.page404.path);
   };
@@ -105,7 +113,7 @@ class App extends Component {
       fetchUserStart();
       const user = await fetch(PAGES.API.fetchUser.path);
       const userInfo = await user.json();
-      console.log('userInfo', userInfo);
+      console.log("userInfo", userInfo);
       fetchUserSuccess(userInfo);
     } catch (e) {
       console.error(e);
@@ -122,40 +130,65 @@ class App extends Component {
   }
 
   render() {
-    const {
-      appName,
-      children
-    } = this.props;
+    const { appName, children } = this.props;
     console.log(this.props);
     return (
-      <div className={ cn() }>
-        <h1>{ appName }</h1>
-        <div className={ cn('header') }>
-          { this.renderMenu() }
-          { this.renderTestButton() }
-          <div className={ cn('button-block') }>
-            <h2>Buttons Redux</h2>
-            { this.renderSayButtons() }
-            { this.renderRoutingButtons() }
-            { this.renderUserButtons() }
+      <div className={cn()}>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <a className="navbar-brand" href="#">
+            Elcon
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon" />
+          </button>
+
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item active">
+                <div className="nav-link" href="#">
+                  <Link to={PAGES.home.path}>Home Page</Link>
+                </div>
+              </li>
+              <li className="nav-item">
+                <div className="nav-link" href="#">
+                  <Link to={PAGES.login.path}>Login Page</Link>
+                </div>
+              </li>
+            </ul>
           </div>
-          { this.renderThunkButton() }
-        </div>
-        { children }
-        <div className={ cn('footer') }>
-        </div>
+        </nav>
+        {/* ******************************************** */}
+        {/* <h1>{appName}</h1> */}
+        {/* <div className={cn("header")}>
+          {this.renderMenu()}
+          {this.renderTestButton()}
+          <div className={cn("button-block")}>
+            <h2>Buttons Redux</h2>
+            {this.renderSayButtons()}
+            {this.renderRoutingButtons()}
+            {this.renderUserButtons()}
+          </div>
+          {this.renderThunkButton()}
+        </div> */}
+        {children}
+        <div className={cn("footer")} />
       </div>
     );
   }
 
   renderTestButton() {
     return (
-      <div className={ cn('button-block') }>
+      <div className={cn("button-block")}>
         <h2>Test Button</h2>
-        <button
-          className={ cn('button', this.state.buttonActive ? 'blue' : 'green') }
-          onClick={ this.handleClickButton }
-        >
+        <button className={cn("button", this.state.buttonActive ? "blue" : "green")} onClick={this.handleClickButton}>
           Click Me
         </button>
       </div>
@@ -164,14 +197,23 @@ class App extends Component {
 
   renderMenu() {
     return (
-      <div className={ cn('menu') }>
+      <div className={cn("menu")}>
         <h2>Menu</h2>
-        <div className={ cn('logo') }>
-          <img src={ elbrusImg } height='100px' />
+        <div className={cn("logo")}>
+          <img src={elbrusImg} height="100px" />
         </div>
-        <div><Link to={ PAGES.home.path }>Home Page</Link></div>
-        <div><Link to={ PAGES.info.path }>Info Page</Link></div>
-        <div><Link to={ PAGES.page404.path }>Page 404</Link></div>
+        <div>
+          <Link to={PAGES.home.path}>Home Page</Link>
+        </div>
+        <div>
+          <Link to={PAGES.info.path}>Info Page</Link>
+        </div>
+        <div>
+          <Link to={PAGES.login.path}>Login Page</Link>
+        </div>
+        <div>
+          <Link to={PAGES.page404.path}>Page 404</Link>
+        </div>
       </div>
     );
   }
@@ -181,22 +223,14 @@ class App extends Component {
       <div>
         <h3>Say Buttons</h3>
         <div>
-          <button
-            className={ cn('button', 'red') }
-            onClick={ this.handleClickSayHi }
-          >
+          <button className={cn("button", "red")} onClick={this.handleClickSayHi}>
             Say Hi
           </button>
-          <button
-            className={ cn('button', 'red') }
-            onClick={ this.handleClickSayBye }
-          >
+          <button className={cn("button", "red")} onClick={this.handleClickSayBye}>
             Say Bye
           </button>
         </div>
-        <div>
-          { this.props.say }
-        </div>
+        <div>{this.props.say}</div>
       </div>
     );
   }
@@ -206,21 +240,15 @@ class App extends Component {
       <div>
         <h3>Router Push Buttons</h3>
         <div>
-          <button
-            className={ cn('button', 'red') }
-            onClick={ this.handleRouteToInfoPage }
-          >
+          <button className={cn("button", "red")} onClick={this.handleRouteToInfoPage}>
             Info page
           </button>
-          <button
-            className={ cn('button', 'red') }
-            onClick={ this.handleRouteToPage404 }
-          >
+          <button className={cn("button", "red")} onClick={this.handleRouteToPage404}>
             Page 404
           </button>
         </div>
         <div>
-          <b>Pathname</b>: { this.props.pathname }
+          <b>Pathname</b>: {this.props.pathname}
         </div>
       </div>
     );
@@ -232,19 +260,13 @@ class App extends Component {
       <div>
         <h3>User Buttons</h3>
         <div>
-          <button
-            className={ cn('button', 'red') }
-            onClick={ this.fetchUser }
-          >
+          <button className={cn("button", "red")} onClick={this.fetchUser}>
             Fetch user
           </button>
         </div>
         <div>
-          {
-            isUserFetching
-            && <div>Loading...</div>
-          }
-          <b>User</b>: { userInfo.name }
+          {isUserFetching && <div>Loading...</div>}
+          <b>User</b>: {userInfo.name}
         </div>
       </div>
     );
@@ -253,22 +275,19 @@ class App extends Component {
   renderThunkButton() {
     const { posts, isPostsFetching } = this.props;
     return (
-      <div className={ cn('button-block') }>
+      <div className={cn("button-block")}>
         <h3>Middlewares (Redux Thunk)</h3>
         <div>
-          <button
-            className={ cn('button', 'yellow') }
-            onClick={ this.handleFetchPosts }
-          >
+          <button className={cn("button", "yellow")} onClick={this.handleFetchPosts}>
             Fetch Posts
           </button>
         </div>
+        <div>{isPostsFetching && <div>Loading...</div>}</div>
         <div>
-          { isPostsFetching && <div>Loading...</div> }
-        </div>
-        <div>
-          { posts.map(el => (
-            <div key={el.id}><b>{el.title}</b>: {el.description}</div>
+          {posts.map(el => (
+            <div key={el.id}>
+              <b>{el.title}</b>: {el.description}
+            </div>
           ))}
         </div>
       </div>
