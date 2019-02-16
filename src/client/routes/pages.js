@@ -23,6 +23,10 @@ export const PAGES = {
     fetchPosts: {
       name: 'fetchPosts',
       path: '/api/posts'
+    },
+    fetchLogin: {
+      name: 'fetchLogin',
+      path: '/api/login'
     }
   }
 };

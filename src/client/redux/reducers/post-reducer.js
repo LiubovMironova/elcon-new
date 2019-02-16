@@ -1,4 +1,4 @@
-import { POST_TYPES } from '../actions/post-actions';
+import { POST_TYPES } from "../actions/post-actions";
 
 const initialState = {
   posts: [],
