@@ -28,11 +28,11 @@ export default class PersonalArea extends Component {
             <li>
               <Link to={PAGES.meetings.path}>встречи</Link>
             </li>
-            {/* <Route path={PAGES.aboutMe.path} component={AboutMe} />
+            <Route path={PAGES.aboutMe.path} component={AboutMe} />
             <Route path={PAGES.serviceWant.path} component={ServiceWant} />
             <Route path={PAGES.serviceGive.path} component={ServiceGive} />
             <Route path={PAGES.geoLocation.path} component={GeoLocation} />
-            <Route path={PAGES.meetings.path} component={Meetings} /> */}
+            <Route path={PAGES.meetings.path} component={Meetings} />
           </div>
         </BrowserRouter>
       </div>

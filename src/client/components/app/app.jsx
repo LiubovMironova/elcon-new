@@ -162,6 +162,11 @@ class App extends Component {
                   <Link to={PAGES.login.path}>Login Page</Link>
                 </div>
               </li>
+              <li className="nav-item">
+                <div className="nav-link" href="#">
+                  <Link to={PAGES.personalArea.path}>Pesonal Page</Link>
+                </div>
+              </li>
             </ul>
           </div>
         </nav>
