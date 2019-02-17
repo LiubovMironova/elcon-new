@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PAGES } from '../../../routes/pages'
+import { PAGES } from '../../../routes/pages';
 
 
 class ServicesList extends Component {
@@ -17,8 +17,7 @@ class ServicesList extends Component {
     }
 }
 
-export default class ServiceGive extends Component {
-
+export default class ServiceWant extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -108,9 +107,9 @@ export default class ServiceGive extends Component {
 
         return (
             <div>
-                <h1>Услуги могу</h1>
+                <h1>Услуги хочу</h1>
                 <p></p>
-                <p>Отметьте галочкой услуги, которые вы можете выполнить:</p>
+                <p>Отметьте галочкой услуги, которые вы хотите получить:</p>
                 {this.state.item}
                 <p></p>
                 <p></p>
