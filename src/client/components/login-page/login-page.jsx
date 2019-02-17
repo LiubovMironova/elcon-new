@@ -20,7 +20,7 @@ export default class LoginPage extends Component {
   };
 
   static defaultProps = {
-    Login: "Vasya"
+    login: "Vasya"
   };
 
   userlist(state = [], action) {

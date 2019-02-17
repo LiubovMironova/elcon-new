@@ -39,6 +39,10 @@ export const PAGES = {
     name: "personalArea",
     path: "/personalArea"
   },
+  register: {
+    name: "register",
+    path: "/register"
+  },
   API: {
     fetchUser: {
       name: "fetchUser",
@@ -64,7 +68,6 @@ export const PAGES = {
       name: "fetchWriteGive",
       path: "/api/fetchWriteGive"
     },
-
     fetchWriteWant: {
       name: "fetchWriteWant",
       path: "/api/fetchWriteWant"
@@ -72,6 +75,10 @@ export const PAGES = {
     fetchMeetings: {
       name: "fetchMeetings",
       path: "/api/fetchMeetings"
+    },
+    fetchRegister: {
+      name: "fetchRegister",
+      path: "/api/fetchRegister"
     }
   }
 };

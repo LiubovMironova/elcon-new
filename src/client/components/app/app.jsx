@@ -159,6 +159,11 @@ class App extends Component {
               </li>
               <li className="nav-item">
                 <div className="nav-link" href="#">
+                  <Link to={PAGES.register.path}>Register Page</Link>
+                </div>
+              </li>
+              <li className="nav-item">
+                <div className="nav-link" href="#">
                   <Link to={PAGES.login.path}>Login Page</Link>
                 </div>
               </li>
@@ -184,9 +189,14 @@ class App extends Component {
           {this.renderThunkButton()}
         </div> */}
         {children}
+        {this.renderConsole()}
         <div className={cn("footer")} />
       </div>
     );
+  }
+
+  renderConsole() {
+    console.log("children", this.props.children);
   }
 
   renderTestButton() {
