@@ -131,7 +131,7 @@ class App extends Component {
 
   render() {
     const { appName, children } = this.props;
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div className={cn()}>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -189,12 +189,11 @@ class App extends Component {
           {this.renderThunkButton()}
         </div> */}
         {children}
-        {this.renderConsole()}
+        {/* {this.renderConsole()} */}
         <div className={cn("footer")} />
       </div>
     );
   }
-
   renderConsole() {
     console.log("children", this.props.children);
   }

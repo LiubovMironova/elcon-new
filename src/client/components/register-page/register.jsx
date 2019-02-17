@@ -69,7 +69,7 @@ export default class LoginPage extends Component {
 
   render() {
     return (
-      <div className="container-fluid bg-light py-3">
+      // <div className="container-fluid bg-light py-3">
         <div className="row">
           <div className="col-md-6 mx-auto">
             <div className="card card-body">
@@ -127,7 +127,7 @@ export default class LoginPage extends Component {
             </div>
           </div>
         </div>
-      </div>
+      // </div>
     );
   }
 }
