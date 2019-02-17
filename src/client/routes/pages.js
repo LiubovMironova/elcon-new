@@ -39,6 +39,10 @@ export const PAGES = {
     name: "personalArea",
     path: "/personalArea"
   },
+  searchPeople: {
+    name: 'searchPeople',
+    path: '/searchPeople'
+  },
   API: {
     fetchUser: {
       name: "fetchUser",
