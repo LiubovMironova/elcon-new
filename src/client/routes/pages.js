@@ -48,10 +48,10 @@ export const PAGES = {
     path: "/searchPeople"
   },
   API: {
-    fetchUser: {
-      name: "fetchUser",
-      path: "/api/user"
-    },
+    // fetchUser: {
+    //   name: "fetchUser",
+    //   path: "/api/user"
+    // },
     fetchPosts: {
       name: "fetchPosts",
       path: "/api/posts"
@@ -80,9 +80,9 @@ export const PAGES = {
       name: "fetchMeetings",
       path: "/api/fetchMeetings"
     },
-    fetchUser: {
-      name: "fetchUser",
-      path: "/api/fetchUser"
+    fetchUserArrayAbout: {
+      name: "fetchUserArrayAbout",
+      path: "/api/fetchUserArrayAbout"
     },
     fetchSelectUsers: {
       name: "fetchSelectUsers",
