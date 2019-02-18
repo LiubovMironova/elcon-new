@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "postgres",
-    "password": "postgres",
-    "database": "db_elcon_test_skeleton",
+    "password": "2",
+    "database": "db_elcon_new",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

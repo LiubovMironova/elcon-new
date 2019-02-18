@@ -80,6 +80,14 @@ export const PAGES = {
       name: "fetchMeetings",
       path: "/api/fetchMeetings"
     },
+    fetchUser: {
+      name: "fetchUser",
+      path: "/api/fetchUser"
+    },
+    fetchSelectUsers: {
+      name: "fetchSelectUsers",
+      path: "/api/fetchSelectUsers"
+    },
     fetchRegister: {
       name: "fetchRegister",
       path: "/api/fetchRegister"

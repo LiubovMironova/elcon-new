@@ -1,10 +1,16 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const service = sequelize.define('service', {
-    servise: DataTypes.STRING
+  const Service = sequelize.define('service', {
+    service: DataTypes.STRING
   }, {});
-  service.associate = function(models) {
+  Service.associate = function (models) {
     // associations can be defined here
   };
-  return service;
+
+
+  Service.readAll = async () => {
+    return await Service.findAll()
+  };
+
+  return Service;
 };

@@ -18,42 +18,51 @@ class ServicesList extends Component {
 }
 
 export default class ServiceGive extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentUser: "",
-      myServices: [],
-      aboutServGive: "",
-      choices: [],
-      item: []
-    };
-  }
 
-  // serviceFETCH = async () => {
-  //     const serviceList = await fetch(PAGES.API.fetchServices.path)
-  //     await this.setState({ mySearch: serviceList})
-  // }
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentUser: 'Вася',
+            myServices: [],
+            aboutServGive: '',
+            choices: [],
+            item: []
+        }
+    }
+
+
+    giveSaveFETCH = async () => {
+        // console.log("  = ", )
+        let giveToSeq = [[], [], []]
+        let p = 0
+        for (let i = 0; i < this.state.choices.length; i++) {
+            if (this.state.choices[i] == true) {
+                giveToSeq[0][0] = this.state.currentUser
+                giveToSeq[1][p] = this.state.myServices[i]
+                p++
+            }
+        }
+        console.log("giveToSeq  = ", giveToSeq)
+
+        await fetch(PAGES.API.fetchWriteGive.path, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ array: giveToSeq })
+        });
+    }
+
+
+    // serviceFETCH = async () => {
+    //     const serviceList = aywait fetch(PAGES.API.fetchServices.path)
+    //     await this.setState({ mySearch: serviceList})
+    // }
 
     handleLineChange = async (e) => {
-      await this.setState({ aboutServGive: e.target.value });
+        await this.setState({ aboutServGive: e.target.value });
     };
-
-    writeGiveFETCH = async () => {
-      const giveToSeq = [];
-
-      for (let i = 0; i < this.state.choices.length; i++) {
-        giveToSeq[i] = [this.state.myServices[i], this.state.choices[i]];
-      }
-
-      await fetch(PAGES.API.fetchWriteGive.path, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ user: this.state.currentUser, servGive: giveToSeq, aboutGive: this.state.aboutServGive })
-      });
-    }
 
     handleInputChange = async (k) => {
       const value = !this.state.choices[k];
@@ -84,24 +93,71 @@ export default class ServiceGive extends Component {
       await this.setState({ item: itemInner });
     }
 
-    beginWork = async () => {
-      const takeFromSeq = [["уборка квартиры", true], ["йога", true], ["стоматолог", false]];
-      const choicesArr = Array(takeFromSeq.length).fill(false);
-      const servicesArr = Array(takeFromSeq.length).fill("");
+    // beginWork = async () => {
+    //     let takeFromSeq = [['уборка квартиры', true], ['йога', true], ['стоматолог', false]];
+    //     let choicesArr = Array(takeFromSeq.length).fill(false);
+    //     let servicesArr = Array(takeFromSeq.length).fill('');
 
-      for (let i = 0; i < takeFromSeq.length; i++) {
-        choicesArr[i] = takeFromSeq[i][1];
-        servicesArr[i] = takeFromSeq[i][0];
-      }
+    //     for (let i = 0; i < takeFromSeq.length; i++) {
+    //         choicesArr[i] = takeFromSeq[i][1]
+    //         servicesArr[i] = takeFromSeq[i][0]
+    //     }
 
-      await this.setState({ choices: choicesArr });
-      await this.setState({ myServices: servicesArr });
+    //     await this.setState({ choices: choicesArr })
+    //     await this.setState({ myServices: servicesArr })
+
+    //     this.reWrite()
+    // }
+
+
+    beginWork2 = async () => {
+        // console.log("  = ", )
+
+        console.log(" this.state.currentUser = ", this.state.currentUser)
+        let userFromBack =
+            await fetch(PAGES.API.fetchUser.path, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ user: this.state.currentUser })
+            });
+
+        let userAbout = await userFromBack.json()
+        console.log(" userAbout = ", userAbout)
+
+
+
+        //-----------------------------------------
+
+        const services = await fetch(PAGES.API.fetchServices.path)
+        const serviceList = await services.json();
+        await this.setState({ myServices: serviceList })
+
+        let choicesArr = Array(serviceList.length).fill(false)
+        await this.setState({ choices: choicesArr })
+
+        console.log(" userAbout[1] = ", userAbout[1])
+        console.log(" userAbout.length = ", userAbout.length)
+
+        for (let i = 0; i < this.state.myServices.length; i++) {
+            for (let g = 0; g < userAbout[1].length; g++) {
+                if (this.state.myServices[i] == userAbout[1][g]) {
+                    let choisesTemp = this.state.choices
+                    choisesTemp[i] = true
+                    await this.setState({ choices: choisesTemp })
+                }
+            }
+        }
+
+        
 
       this.reWrite();
     }
 
     componentDidMount() {
-      this.beginWork();
+        this.beginWork2();
     }
 
     render() {
@@ -117,7 +173,7 @@ export default class ServiceGive extends Component {
                 <p>Оставьте ваш комментарий:</p>
                 <input onChange={this.handleLineChange} />
                 <p></p>
-                <button onClick={this.writeGiveFETCH}>Сохранить</button>
+                <button onClick={this.giveSaveFETCH}>Сохранить</button>
                 <p></p>
             </div>
       );
