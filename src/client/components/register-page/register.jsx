@@ -57,7 +57,7 @@ export default class LoginPage extends Component {
     }
   };
 
-  handleLoginChange = event => {
+  handleEmailChange = event => {
     console.log("login was changed", event.target.value);
     this.setState({ login: event.target.value });
   };
@@ -67,9 +67,14 @@ export default class LoginPage extends Component {
     this.setState({ password: event.target.value });
   };
 
+  handleAnswerChange = event => {
+    console.log("login was changed", event.target.value);
+    this.setState({ login: event.target.value });
+  };
+
   render() {
     return (
-      // <div className="container-fluid bg-light py-3">
+    // <div className="container-fluid bg-light py-3">
         <div className="row">
           <div className="col-md-6 mx-auto">
             <div className="card card-body">
@@ -82,7 +87,14 @@ export default class LoginPage extends Component {
               </div> */}
               <fieldset>
                 <div className="form-group has-error">
-                  <input className="form-control input-lg" placeholder="E-mail Address" name="email" type="text" />
+                  <input 
+                  className="form-control input-lg" 
+                  placeholder="E-mail Address" 
+                  name="email" 
+                  value="" 
+                  type="text" 
+                  onChange={this.handleEmailChange}
+                  />
                 </div>
                 <div className="form-group has-success">
                   <input
@@ -91,6 +103,7 @@ export default class LoginPage extends Component {
                     name="password"
                     value=""
                     type="password"
+                    onChange={this.handlePasswordChange}
                   />
                 </div>
                 <div className="form-group has-success">
@@ -100,6 +113,7 @@ export default class LoginPage extends Component {
                     name="password"
                     value=""
                     type="password"
+                    onChange={this.handlePasswordChange}
                   />
                 </div>
                 <div className="form-group">
@@ -114,6 +128,7 @@ export default class LoginPage extends Component {
                     name="answer"
                     value=""
                     type="text"
+                    onChange={this.handleAnswerChange}
                   />
                 </div>
                 <div className="checkbox">
@@ -122,12 +137,16 @@ export default class LoginPage extends Component {
                     I have read and agree to the <a href="#">terms of service</a>
                   </label>
                 </div>
-                <input className="btn btn-lg btn-primary btn-block" value="Sign Me Up" type="submit" />
+                <input 
+                  className="btn btn-lg btn-primary btn-block" 
+                  value="Sign Me Up" 
+                  type="submit" 
+                />
               </fieldset>
             </div>
           </div>
         </div>
-      // </div>
+    // </div>
     );
   }
 }
