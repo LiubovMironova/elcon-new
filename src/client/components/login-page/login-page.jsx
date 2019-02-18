@@ -79,17 +79,17 @@ export default class LoginPage extends Component {
                   {/* <!-- form card login --> */}
                   <div className="card rounded-0">
                     <div className="card-header">
-                      <h3 className="mb-0">Login</h3>
+                      <h3 className="text-center mb-0">Login</h3>
                     </div>
                     <div className="card-body">
                       <form className="form" role="form" autoComplete="off" id="formLogin" noValidate="" method="POST">
                         <div className="form-group">
-                          <label htmlFor="uname1">Username</label>
+                          <label htmlFor="email">Email</label>
                           <input
                             type="text"
                             className="form-control form-control-lg rounded-0"
-                            name="uname1"
-                            id="uname1"
+                            name="email"
+                            id="email"
                             required=""
                           />
                           <div className="invalid-feedback">Oops, you missed this one.</div>
@@ -105,16 +105,7 @@ export default class LoginPage extends Component {
                           />
                           <div className="invalid-feedback">Enter your password too!</div>
                         </div>
-                        <div>
-                          <label className="custom-control custom-checkbox">
-                            <input type="checkbox" className="custom-control-input" />>
-                            <span className="custom-control-indicator" />
-                            <span className="custom-control-description small text-dark">
-                              Remember me on this computer
-                            </span>
-                          </label>
-                        </div>
-                        <button type="submit" className="btn btn-success btn-lg float-right" id="btnLogin">
+                        <button type="submit" className="btn btn-primary btn-lg float-right" id="btnLogin">
                           Login
                         </button>
                       </form>
