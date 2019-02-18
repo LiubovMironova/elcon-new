@@ -7,7 +7,7 @@ import { PAGES } from '../../routes/pages';
 import AboutMe from './aboutMe/aboutMe';
 import ServiceGive from './serviceGive/serviceGive';
 import ServiceWant from './serviceWant/serviceWant';
-import GeoLocation from './geoLocation/geoLocation'
+// import GeoLocation from './geoLocation/geoLocation'
 import Meetings from './meettings/meetings';
 import PeopleList from './selectPeople/searchPeople'
 
