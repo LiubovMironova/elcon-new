@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { PAGES } from '../../../routes/pages';
+import React, { Component } from "react";
+import { PAGES } from "../../../routes/pages";
 
 
 class ServicesList extends Component {
-    render() {
-        return (
+  render() {
+    return (
             <div>
                 <input
                     type="checkbox"
@@ -13,65 +13,65 @@ class ServicesList extends Component {
                 />
                 {this.props.serv}
             </div>
-        )
-    }
+    );
+  }
 }
 
 export default class ServiceWant extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            currentUser: '',
-            myServices: [],
-            aboutServGive: '',
-            choices: [],
-            item: []
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentUser: "",
+      myServices: [],
+      aboutServGive: "",
+      choices: [],
+      item: []
+    };
+  }
 
-    // serviceFETCH = async () => {
-    //     const serviceList = await fetch(PAGES.API.fetchServices.path)
-    //     await this.setState({ mySearch: serviceList})
-    // }
+  // serviceFETCH = async () => {
+  //     const serviceList = await fetch(PAGES.API.fetchServices.path)
+  //     await this.setState({ mySearch: serviceList})
+  // }
 
     handleLineChange = async (e) => {
-        await this.setState({ aboutServGive: e.target.value });
+      await this.setState({ aboutServGive: e.target.value });
     };
 
     writeGiveFETCH = async () => {
-        let giveToSeq = []
+      const giveToSeq = [];
 
-        for (let i = 0; i < this.state.choices.length; i++) {
-            giveToSeq[i] = [this.state.myServices[i], this.state.choices[i]]
-        }
+      for (let i = 0; i < this.state.choices.length; i++) {
+        giveToSeq[i] = [this.state.myServices[i], this.state.choices[i]];
+      }
 
-        await fetch(PAGES.API.fetchWriteGive.path, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ user: this.state.currentUser, servGive: giveToSeq, aboutGive: this.state.aboutServGive })
-        });
+      await fetch(PAGES.API.fetchWriteGive.path, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ user: this.state.currentUser, servGive: giveToSeq, aboutGive: this.state.aboutServGive })
+      });
     }
 
     handleInputChange = async (k) => {
-        const value = !this.state.choices[k];
-        let choicesTemp = this.state.choices;
-        choicesTemp[k] = value;
-        await this.setState({ choices: choicesTemp });
+      const value = !this.state.choices[k];
+      const choicesTemp = this.state.choices;
+      choicesTemp[k] = value;
+      await this.setState({ choices: choicesTemp });
     }
 
     changeFunction = async (g) => {
-        await this.handleInputChange(g);
-        await this.reWrite();
+      await this.handleInputChange(g);
+      await this.reWrite();
     }
 
     reWrite = async () => {
-        let itemInner = []
+      const itemInner = [];
 
-        for (let i = 0; i < this.state.choices.length; i++) {
-            itemInner.push(
+      for (let i = 0; i < this.state.choices.length; i++) {
+        itemInner.push(
                 <div key={i}>
                     < ServicesList
                         serv={this.state.myServices[i]}
@@ -79,33 +79,33 @@ export default class ServiceWant extends Component {
                         onChangeFunc={() => this.changeFunction(i)}
                     />
                 </div>
-            )
-        }
-        await this.setState({ item: itemInner })
+        );
+      }
+      await this.setState({ item: itemInner });
     }
 
     beginWork = async () => {
-        let takeFromSeq = [['уборка квартиры', true], ['йога', true], ['стоматолог', false]];
-        let choicesArr = Array(takeFromSeq.length).fill(false);
-        let servicesArr = Array(takeFromSeq.length).fill('');
+      const takeFromSeq = [["уборка квартиры", true], ["йога", true], ["стоматолог", false]];
+      const choicesArr = Array(takeFromSeq.length).fill(false);
+      const servicesArr = Array(takeFromSeq.length).fill("");
 
-        for (let i = 0; i < takeFromSeq.length; i++) {
-            choicesArr[i] = takeFromSeq[i][1]
-            servicesArr[i] = takeFromSeq[i][0]
-        }
+      for (let i = 0; i < takeFromSeq.length; i++) {
+        choicesArr[i] = takeFromSeq[i][1];
+        servicesArr[i] = takeFromSeq[i][0];
+      }
 
-        await this.setState({ choices: choicesArr })
-        await this.setState({ myServices: servicesArr })
+      await this.setState({ choices: choicesArr });
+      await this.setState({ myServices: servicesArr });
 
-        this.reWrite()
+      this.reWrite();
     }
+
     componentDidMount() {
-        this.beginWork();
+      this.beginWork();
     }
 
     render() {
-
-        return (
+      return (
             <div>
                 <h1>Услуги хочу</h1>
                 <p></p>
@@ -120,6 +120,6 @@ export default class ServiceWant extends Component {
                 <button onClick={this.writeGiveFETCH}>Сохранить</button>
                 <p></p>
             </div>
-        );
+      );
     }
 }

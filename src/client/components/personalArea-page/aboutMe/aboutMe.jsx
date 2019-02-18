@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 
 export default class AboutMe extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            currentUser: '',
-            aboutMe: ''
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentUser: "",
+      aboutMe: ""
+    };
+  }
 
     handleLineChange = async (e) => {
-        await this.setState({ aboutMe: e.target.value });
+      await this.setState({ aboutMe: e.target.value });
     };
 
     // handleLineFETCH = async () => {
@@ -27,7 +26,7 @@ export default class AboutMe extends Component {
     // }
 
     render() {
-        return (
+      return (
             <div>
                 <h1>О себе</h1>
                 <input onChange={this.handleLineChange} />
@@ -35,6 +34,6 @@ export default class AboutMe extends Component {
                 <button onClick={this.handleCountAndWrite}>Сохранить</button>
                 <p></p>
             </div>
-        );
+      );
     }
 }
