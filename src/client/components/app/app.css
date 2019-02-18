@@ -1,7 +1,7 @@
 .app {
   &__header {
-    display: flex;
-    flex-direction: row;
+    /* display: flex; */
+    /* flex-direction: row; */
     /* background-image: url("./img1.jpg");
     background-attachment: scroll;
     background-size:cover;

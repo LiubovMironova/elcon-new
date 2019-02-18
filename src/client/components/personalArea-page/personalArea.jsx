@@ -11,13 +11,9 @@ import ServiceWant from './serviceWant/serviceWant';
 import Meetings from './meettings/meetings';
 import PeopleList from './selectPeople/searchPeople'
 
-
-
-
 export default class PersonalArea extends Component {
 
   render() {
-
     return (
       <div>
         < BrowserRouter >

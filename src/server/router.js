@@ -66,11 +66,11 @@ router.post('/fetchAbout', /* async */ function (req, res) {
 
 
 router.get('/fetchServices', async function (req, res) {
-  // const serviseList = await models.User.readAll()
-  // const serviseList = services;
-  console.log(" services = ", services)
+ const serviceList = await models.Service.readAll()
+  // const serviceList = services;
+  console.log("  serviceList = ", serviceList)
 
-  res.send(services);
+  res.send( serviceList);
 })
 
 router.post('/fetchUser', async function (req, res) {

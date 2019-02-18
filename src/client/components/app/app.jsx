@@ -133,7 +133,8 @@ class App extends Component {
     const { appName, children } = this.props;
     // console.log(this.props);
     return (
-      <div className={cn()}>
+      // <div className={cn()}>
+      <React.Fragment>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <a className="navbar-brand" href="#">
             Elcon
@@ -175,10 +176,11 @@ class App extends Component {
             </ul>
           </div>
         </nav>
-        {/* ******************************************** */}
-        {/* <h1>{appName}</h1> */}
-        {/* <div className={cn("header")}>
-          {this.renderMenu()}
+        <div className="container">
+          {/* ******************************************** */}
+          {/* <h1>{appName}</h1> */}
+          <div className={cn("header")}>
+            {/* {this.renderMenu()}
           {this.renderTestButton()}
           <div className={cn("button-block")}>
             <h2>Buttons Redux</h2>
@@ -186,14 +188,17 @@ class App extends Component {
             {this.renderRoutingButtons()}
             {this.renderUserButtons()}
           </div>
-          {this.renderThunkButton()}
-        </div> */}
-        {children}
-        {/* {this.renderConsole()} */}
-        <div className={cn("footer")} />
-      </div>
+          {this.renderThunkButton()} */}
+            {children}
+          </div>
+          {/* {children} */}
+          {/* {this.renderConsole()} */}
+          <div className={cn("footer")} />
+        </div>
+      </React.Fragment>
     );
   }
+
   renderConsole() {
     console.log("children", this.props.children);
   }

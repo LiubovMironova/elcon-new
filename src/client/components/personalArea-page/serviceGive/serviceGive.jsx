@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { PAGES } from '../../../routes/pages'
+import React, { Component } from "react";
+import { PAGES } from "../../../routes/pages";
 
 
 class ServicesList extends Component {
-    render() {
-        return (
+  render() {
+    return (
             <div>
                 <input
                     type="checkbox"
@@ -13,15 +13,14 @@ class ServicesList extends Component {
                 />
                 {this.props.serv}
             </div>
-        )
-    }
+    );
+  }
 }
 
 export default class ServiceGive extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             currentUser: 'Вася',
             myServices: [],
@@ -66,22 +65,22 @@ export default class ServiceGive extends Component {
     };
 
     handleInputChange = async (k) => {
-        const value = !this.state.choices[k];
-        let choicesTemp = this.state.choices;
-        choicesTemp[k] = value;
-        await this.setState({ choices: choicesTemp });
+      const value = !this.state.choices[k];
+      const choicesTemp = this.state.choices;
+      choicesTemp[k] = value;
+      await this.setState({ choices: choicesTemp });
     }
 
     changeFunction = async (g) => {
-        await this.handleInputChange(g);
-        await this.reWrite();
+      await this.handleInputChange(g);
+      await this.reWrite();
     }
 
     reWrite = async () => {
-        let itemInner = []
+      const itemInner = [];
 
-        for (let i = 0; i < this.state.choices.length; i++) {
-            itemInner.push(
+      for (let i = 0; i < this.state.choices.length; i++) {
+        itemInner.push(
                 <div key={i}>
                     < ServicesList
                         serv={this.state.myServices[i]}
@@ -89,9 +88,9 @@ export default class ServiceGive extends Component {
                         onChangeFunc={() => this.changeFunction(i)}
                     />
                 </div>
-            )
-        }
-        await this.setState({ item: itemInner })
+        );
+      }
+      await this.setState({ item: itemInner });
     }
 
     // beginWork = async () => {
@@ -154,15 +153,15 @@ export default class ServiceGive extends Component {
 
         
 
-        this.reWrite()
+      this.reWrite();
     }
+
     componentDidMount() {
         this.beginWork2();
     }
 
     render() {
-
-        return (
+      return (
             <div>
                 <h1>Услуги могу</h1>
                 <p></p>
@@ -177,6 +176,6 @@ export default class ServiceGive extends Component {
                 <button onClick={this.giveSaveFETCH}>Сохранить</button>
                 <p></p>
             </div>
-        );
+      );
     }
 }
