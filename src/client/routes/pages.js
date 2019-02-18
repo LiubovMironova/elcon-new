@@ -39,9 +39,13 @@ export const PAGES = {
     name: "personalArea",
     path: "/personalArea"
   },
+  register: {
+    name: "register",
+    path: "/register"
+  },
   searchPeople: {
-    name: 'searchPeople',
-    path: '/searchPeople'
+    name: "searchPeople",
+    path: "/searchPeople"
   },
   API: {
     fetchUser: {
@@ -83,6 +87,10 @@ export const PAGES = {
     fetchSelectUsers: {
       name: "fetchSelectUsers",
       path: "/api/fetchSelectUsers"
+    },
+    fetchRegister: {
+      name: "fetchRegister",
+      path: "/api/fetchRegister"
     }
   }
 };

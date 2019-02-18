@@ -8,6 +8,7 @@ import InfoPage from "../components/info-page/info-page";
 import Page404 from "../components/page404/page404";
 import LoginPage from "../components/login-page/login-page";
 import PersonalArea from "../components/personalArea-page/personalArea";
+import Register from "../components/register-page/register";
 
 const WrappedApp = (Component, props) => (
   <App>
@@ -23,6 +24,7 @@ export default () => (
     <Route exact path={PAGES.login.path} render={props => WrappedApp(LoginPage, props)} />
     <Route exact path={PAGES.personalArea.path} render={props => WrappedApp(PersonalArea, props)} />
     <Route exact path={PAGES.page404.path} render={props => WrappedApp(Page404, props)} />
+    <Route exact path={PAGES.register.path} render={props => WrappedApp(Register, props)} />
     <Route path="/" render={() => <Redirect to={PAGES.page404.path} />} />
   </Switch>
 );
