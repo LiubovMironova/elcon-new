@@ -10,7 +10,20 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
   };
 
-  // Service.readAll = async () => await Service.findAll();
+
+  Service.readAll = async () => {
+
+    let result = await Service.findAll({});
+
+    let array = []
+    for (let i = 0; i < result.length; i++) {
+      array.push([result[i].id, result[i].service])
+    }
+
+    console.log(" array = ", array)
+
+    return array
+  };
 
   return Service;
 };
