@@ -11,7 +11,7 @@ const db = {};
 const config = {
   "username": "postgres",
   "password": "2",
-  "database": "db_elcon_new",
+  "database": "db_elcon_new_2",
   "host": "127.0.0.1",
   "dialect": "postgres",
   define: {

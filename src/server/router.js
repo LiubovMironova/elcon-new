@@ -81,10 +81,11 @@ router.post('/fetchUserArrayAbout', async function (req, res) {
   console.log(" !!!!!!!!!!!!!! ")
   console.log(JSON.stringify(req.body));
   const requestUser = req.body.user;
+  const requestTag = req.body.tag;
   console.log(" requestUser = ", requestUser)
 
 
-  const userWantList = await models.user_give_service.readAll(requestUser)
+  const userWantList = await models.user_give_service.readAll(requestUser, requestTag )
   console.log(" userWantList= ", userWantList)
   res.send(userWantList)
   // for (let i = 0; i < users.length; i++) {
@@ -106,10 +107,10 @@ router.post('/fetchWriteGive', async function (req, res) {
 
   const giveUser = req.body.user
   const giveServ = req.body.array
- 
-  // const requestAboutGive = req.body.aboutGive;
+  const giveTag = req.body.tag
+  // const requestAbogiveTagutGive = req.body.aboutGive;
 
-  await models.user_give_service.change(giveUser,  giveServ)
+  await models.user_give_service.change(giveUser,  giveServ, giveTag)
   res.send()
 })
 

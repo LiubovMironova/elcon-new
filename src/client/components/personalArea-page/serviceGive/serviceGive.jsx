@@ -59,7 +59,7 @@ export default class ServiceGive extends Component {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ user: this.state.currentUser[0], array: giveToSeq })
+            body: JSON.stringify({ user: this.state.currentUser[0], array: giveToSeq, tag:"G"})
         });
     }
 
@@ -130,7 +130,7 @@ export default class ServiceGive extends Component {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ user: this.state.currentUser[0] })
+                body: JSON.stringify({ user: this.state.currentUser[0], tag:"G" })
             });
 
         let userArrayAbout = await userFromBack.json()

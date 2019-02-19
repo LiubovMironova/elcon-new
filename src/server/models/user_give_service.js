@@ -2,7 +2,8 @@
 module.exports = (sequelize, DataTypes) => {
   const user_give_service = sequelize.define('user_give_service', {
     user_id: DataTypes.INTEGER,
-    service_id: DataTypes.INTEGER //,
+    service_id: DataTypes.INTEGER,
+    tag: DataTypes.STRING, //,
     // adout_gived_serv: DataTypes.STRING,
     // datetime_from: DataTypes.DATE,
     // datetime_to: DataTypes.DATE
@@ -12,11 +13,12 @@ module.exports = (sequelize, DataTypes) => {
   };
 
 
-  user_give_service.readAll = async (user) => {
-    let result = await  user_give_service.findAll({
+  user_give_service.readAll = async (user, tag) => {
+    let result = await user_give_service.findAll({
       where: {
-        user_id: user
-    }
+        user_id: user,
+        tag: tag
+      }
     });
     console.log("result = ", result)
 
@@ -32,13 +34,24 @@ module.exports = (sequelize, DataTypes) => {
 
 
 
-  user_give_service.change = async (User, Servs) => {
-// удалить
-// добавить
+  user_give_service.change = async (user, servs, tag) => {
+
+    await user_give_service.destroy({ where: { user_id: user, tag: tag } })
+    console.log("DDDDDDDDDDDDDDDDDDDDDD")
+    for (let i = 0; i < servs.length; i++) {
+      await user_give_service.create({ user_id: user, service_id: servs[i], tag: tag })
+      console.log("IIIIINNNNNNNNNNNNNNNNNNNSSSSSSSSSSS")
+    }
+
+    let result = await user_give_service.findAll({
+      where: {
+        user_id: user,
+        tag: tag
+      }
+    });
+    console.log("result = ", result)
 
   }
-
-
 
 
   return user_give_service;
