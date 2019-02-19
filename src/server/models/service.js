@@ -9,7 +9,17 @@ module.exports = (sequelize, DataTypes) => {
 
 
   Service.readAll = async () => {
-    return await Service.findAll()
+
+    let result = await Service.findAll({});
+
+    let array = []
+    for (let i = 0; i < result.length; i++) {
+      array.push([result[i].id, result[i].service])
+    }
+
+    console.log(" array = ", array)
+
+    return array
   };
 
   return Service;

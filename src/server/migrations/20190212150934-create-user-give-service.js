@@ -13,24 +13,16 @@ module.exports = {
       },
       service_id: {
         type: Sequelize.INTEGER
-      },
-      adout_gived_serv: {
-        type: Sequelize.STRING
-      },
-      datetime_from: {
-        type: Sequelize.DATE
-      },
-      datetime_to: {
-        type: Sequelize.DATE
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
+      } //,
+      // adout_gived_serv: {
+      //   type: Sequelize.STRING
+      // },
+      // datetime_from: {
+      //   type: Sequelize.DATE
+      // },
+      // datetime_to: {
+      //   type: Sequelize.DATE
+      // }
     });
   },
   down: (queryInterface, Sequelize) => {

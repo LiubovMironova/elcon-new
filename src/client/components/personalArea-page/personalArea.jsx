@@ -34,7 +34,7 @@ export default class PersonalArea extends Component {
               <Link to={PAGES.meetings.path}>встречи</Link>
             </li>
             <li>
-              <Link to={PAGES.searchPeople.path}>Найти специалиста</Link>
+              {/* <Link to={PAGES.searchPeople.path}>Найти специалиста</Link> */}
             </li>
 
             <Route path={PAGES.aboutMe.path} component={AboutMe} />
@@ -42,7 +42,7 @@ export default class PersonalArea extends Component {
             <Route path={PAGES.serviceGive.path} component={ServiceGive} />
             {/* <Route path={PAGES.geoLocation.path} component={GeoLocation} /> */}
             <Route path={PAGES.meetings.path} component={Meetings} />
-            <Route path={PAGES.searchPeople.path} component={PeopleList} />
+            {/* <Route path={PAGES.searchPeople.path} component={PeopleList} /> */}
           </div>
         </BrowserRouter >
       </div>
