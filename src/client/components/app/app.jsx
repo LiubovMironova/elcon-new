@@ -292,7 +292,7 @@ class App extends Component {
   }
 
   renderThunkButton() {
-    const { posts, isPostsFetching } = this.props;
+    const { email, sequrityQuestion, isPostsFetching } = this.register;
     return (
       <div className={cn("button-block")}>
         <h3>Middlewares (Redux Thunk)</h3>
