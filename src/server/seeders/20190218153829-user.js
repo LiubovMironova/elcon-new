@@ -4,17 +4,17 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
 
     let userObject = [
-      { login: "vvv", name: "Вася" },
-      { login: "ppp", name: "Петя" },
-      { login: "mmm", name: "Маша" },
+      { login: "vvv", name: "Василий Иванов" },
+      { login: "ppp", name: "Петр Милославский" },
+      { login: "mmm", name: "Мария Малиина" },
 
-      { login: "kkk", name: "Коля" },
-      { login: "ddd", name: "Дима" },
-      { login: "ggg", name: "Гриша" },
+      { login: "nnn", name: "Николай Петров" },
+      { login: "ddd", name: "Дмитрий Висковский" },
+      { login: "ggg", name: "Григорий Тюль" },
 
-      { login: "aaa", name: "Аня" },
-      { login: "lll", name: "Люся" },
-      { login: "bbb", name: "Боря" }
+      { login: "aaa", name: "Анна Чернышевская" },
+      { login: "lll", name: "Люся Нек" },
+      { login: "bbb", name: "Борис Харитонов" }
     ]
 
     return queryInterface.bulkInsert('users', userObject, {});

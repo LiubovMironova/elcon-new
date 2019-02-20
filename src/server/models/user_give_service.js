@@ -3,10 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const user_give_service = sequelize.define('user_give_service', {
     user_id: DataTypes.INTEGER,
     service_id: DataTypes.INTEGER,
-    tag: DataTypes.STRING, //,
-    // adout_gived_serv: DataTypes.STRING,
-    // datetime_from: DataTypes.DATE,
-    // datetime_to: DataTypes.DATE
+    tag: DataTypes.STRING
   }, {});
   user_give_service.associate = function (models) {
     // user_give_service.belongsTo(models.Service)
@@ -32,13 +29,6 @@ module.exports = (sequelize, DataTypes) => {
     for (let i = 0; i < servs.length; i++) {
       await user_give_service.create({ user_id: user, service_id: servs[i], tag: tag })
     }
-    let result = await user_give_service.findAll({
-      where: {
-        user_id: user,
-        tag: tag
-      }
-    });
-    
   }
 
   user_give_service.unique = (arrayIn) => {
@@ -53,9 +43,6 @@ module.exports = (sequelize, DataTypes) => {
         arrayOut.push(arrayIn[i])
       }
     }
-    console.log(" arrayIn = ", arrayIn)
-    console.log(" arrayOut = ", arrayOut)
-
     return arrayOut
   }
 
@@ -77,28 +64,19 @@ module.exports = (sequelize, DataTypes) => {
           service_id: userWant[i].service_id,
           tag: tagWhatAthers
         }
-
       });
 
       for (let i = 0; i < userCan.length; i++) {
-        // console.log(" userCan = ", userCan )
-        console.log(" userCan[i].user_id = ", userCan[i].user_id)
         usersCan.push(userCan[i].user_id)
       }
     }
-    
     return user_give_service.unique(usersCan)
-
   }
 
 
   user_give_service.takeAppropriateUsers = async (user) => {
     let appropriateForHim = await user_give_service.appropriateUsers(user, "W", "G")
     let appropriateForThem = await user_give_service.appropriateUsers(user, "G", "W")
-
-    console.log("appropriateForHim  =  ", appropriateForHim)
-    console.log("appropriateForThem =  ", appropriateForThem)
-
     let totalAppropriateUsers = []
 
     for (let i = 0; i < appropriateForHim.length; i++) {
@@ -108,37 +86,23 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     }
-    console.log("totalAppropriateUsers =  ", totalAppropriateUsers)
-
     return user_give_service.unique(totalAppropriateUsers);
   }
 
 
-user_give_service.takeAboutUsers = async (user) => {
-let answer = []
+  user_give_service.takeAboutUsers = async (user) => {
+    let answer = []
 
-  let goodUsers = await user_give_service.takeAppropriateUsers(user) 
-  console.log( " answer  = ",  answer )
+    let goodUsers = await user_give_service.takeAppropriateUsers(user)
+    for (let i = 0; i < goodUsers.length; i++) {
+      let user1 = [goodUsers[i]]
+      let can = await user_give_service.readAll(goodUsers[i], "G")
+      let want = await user_give_service.readAll(goodUsers[i], "W")
+      answer.push([user1, can, want])
+    }
+    console.log(" answer  = ", answer)
+    return answer
 
-  for (let i = 0; i < goodUsers.length; i++) {
-    let user1 =[ goodUsers[i] ]
-
-    console.log( " user1  = ",  user1 )
-
-    let can = await user_give_service.readAll(goodUsers[i], "G")
-
-    console.log( "can  = ", can )
-
-    let want = await user_give_service.readAll(goodUsers[i], "W")
-
-    console.log( "want   = ", want  )
-
-    answer.push([ user1 , can, want ])
-}
-console.log( " answer  = ",  answer )
-
-return answer
-
-}
+  }
   return user_give_service;
 };

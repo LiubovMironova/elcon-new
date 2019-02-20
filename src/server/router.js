@@ -13,9 +13,23 @@ const router = express.Router();
 // // кто  Give(Can,Могу) Want(Хочу)
 // // const users = [[["Вася"], [], []], [["Петя"], [], ["йога", "помыть"]], [["Маша"], [], ["прибить гвоздь", "йога"]]];
 
-// router.post("/fetchAbout", (req, res) => {
 //   res.send();
 // });
+
+
+router.get('/fetchCurrUser', async function (req, res) {
+  const currUser = await models.curr_user.readAll()
+  console.log(" currUser = ", currUser )
+  res.send(currUser);
+})
+
+router.post('/fetchCurrUser', async function (req, res) {
+  console.log(JSON.stringify(req.body));
+  const requestCurrUser = req.body.user;
+
+  const currUser = await models.curr_user.readAll()
+  res.send(currUser);
+})
 
 
 router.get('/fetchAllUsers', async function (req, res) {
@@ -53,9 +67,7 @@ router.post('/fetchWriteGive', async function (req, res) {
 router.post('/fetchSelectUsers', async function (req, res) {
 
   console.log(JSON.stringify(req.body));
-  console.log("fetchSelectUsers -req.body = ", req.body)
   let userFromFront = req.body.user
-  console.log(" userFromFront = ", userFromFront)
   let usersToFront = await models.user_give_service.takeAboutUsers(userFromFront[0])
 
   res.send(usersToFront)

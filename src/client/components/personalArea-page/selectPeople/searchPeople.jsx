@@ -10,7 +10,7 @@ export default class PeopleList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentUser: ['1', 'Вася'],
+            currentUser: [],
             allServices: [],
             user: [],
             servGive: [],
@@ -57,36 +57,26 @@ export default class PeopleList extends Component {
             });
 
         let usersBack = await usersFromBack.json()
-        console.log(" usersBack = ", usersBack)
         let takeFromSeq = usersBack
         //-----------------------------------------
-
         let userArr = Array(takeFromSeq.length).fill('');
         let canArr = Array(takeFromSeq.length).fill('');
         let wantArr = Array(takeFromSeq.length).fill('');
 
         for (let i = 0; i < takeFromSeq.length; i++) {
             userArr[i] = takeFromSeq[i][0][0]
-            console.log("userArr[i] = ", userArr[i])
             canArr[i] = takeFromSeq[i][1]
             wantArr[i] = takeFromSeq[i][2]
         }
-
-        // console.log("  userArr = ", userArr)
-        // console.log(" canArr = ", canArr)
-        // console.log(" wantArr = ", wantArr)
 
         // Подгрузка всех пользователей
         const allUsers = await fetch(PAGES.API.fetchAllUsers.path)
         const userList = await allUsers.json();
         console.log(" userList   = ", userList)
 
-
         // Подгрузка всех услуг
         const services = await fetch(PAGES.API.fetchServices.path)
         const serviceList = await services.json();
-
-        console.log(" serviceList  = ", serviceList)
 
         for (let k = 0; k < takeFromSeq.length; k++) {
             for (let i = 0; i < serviceList.length; i++) {
@@ -102,23 +92,11 @@ export default class PeopleList extends Component {
                 }
             }
             for (let i = 0; i < userList.length; i++) {
-        //         console.log(" userArr[k] = ", userArr[k] )
-        //         console.log(" userArr[k][0] = ", userArr[k][0] )
-
-        // console.log("   userList[i][1] = ",  userList[i][1])
-
                 if (userArr[k] == userList[i][0]) {
                     userArr[k] = userList[i][1]
                 }
-
             }
-
         }
-
-
-        console.log("  userArr = ", userArr)
-        console.log(" canArr = ", canArr)
-        console.log(" wantArr = ", wantArr)
 
         await this.setState({ user: userArr })
         await this.setState({ servGive: canArr })
@@ -134,6 +112,32 @@ export default class PeopleList extends Component {
 
 
     beginWork2 = async () => {
+
+
+        // Подгрузка всех пользователей
+        const allUsers = await fetch(PAGES.API.fetchAllUsers.path)
+        const userList = await allUsers.json();
+       //  console.log(" userList   = ", userList)
+
+        // Подгрузка текущего пользователя
+       const currUserFromBack = await fetch(PAGES.API.fetchCurrUser.path)
+       const currUser = await currUserFromBack.json();
+       console.log(" currUser = ", currUser)
+
+       let userToState = []
+       userToState[0] = currUser
+
+       for(let i=0; i<userList.length; i++){
+           console.log(" userList[i] = ", userList[i])
+
+           if (currUser == userList[i][0]) {
+                   userToState[1] = userList[i][1]
+           }
+       }
+       await this.setState({ currentUser: userToState })
+
+
+
         await this.beginWork()
     }
 
@@ -144,6 +148,7 @@ export default class PeopleList extends Component {
     render() {
         return (
             <div>
+                <h1>{this.state.currentUser[1]}, личный кабинет</h1>
                 <h1>Услуги могу</h1>
                 <p></p>
                 <p>Отметьте галочкой услуги, которые вы можете выполнить:</p>
