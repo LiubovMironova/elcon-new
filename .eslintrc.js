@@ -18,7 +18,8 @@ module.exports = {
     "import/prefer-default-export": 0,
     
     "quotes": ["error", "double", { "allowTemplateLiterals": true }],
-    "arrow-parens": "off"
+    "arrow-parens": "off",
+    "implicit-arrow-linebreak": "off"
   },
   settings: {
     "import/resolver": {

@@ -58,7 +58,7 @@ export const PAGES = {
     },
     fetchLogin: {
       name: "fetchLogin",
-      path: "/api/login"
+      path: "/api/fetchLogin"
     },
     fetchAbout: {
       name: "fetchAbout",

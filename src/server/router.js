@@ -1,18 +1,21 @@
 import express from "express";
-import models from "./models/index"
-
+import models from "./models/index";
 
 const router = express.Router();
 
-router.post('/fetchAbout', /* async */ function (req, res) {
-  console.log(JSON.stringify(req.body));
-  const requestText = req.body.text;
-  // await models.User.create({
-  //     "about_me": requestText
-  // })
-  res.send();
-})
+// router.post('/fetchAbout', /* async */ function (req, res) {
+//   console.log(JSON.stringify(req.body));
+//   const requestText = req.body.text;
+//   // await models.User.create({
+//   //     "about_me": requestText
+//   // })
+// // const services = ["помыть", "погладить", "прибить гвоздь", "йога", "зубной", "маникюр"];
+// // кто  Give(Can,Могу) Want(Хочу)
+// // const users = [[["Вася"], [], []], [["Петя"], [], ["йога", "помыть"]], [["Маша"], [], ["прибить гвоздь", "йога"]]];
 
+// router.post("/fetchAbout", (req, res) => {
+//   res.send();
+// });
 
 
 router.get('/fetchAllUsers', async function (req, res) {
@@ -52,7 +55,7 @@ router.post('/fetchSelectUsers', async function (req, res) {
   console.log(JSON.stringify(req.body));
   console.log("fetchSelectUsers -req.body = ", req.body)
   let userFromFront = req.body.user
-  console.log(" userFromFront = ", userFromFront )
+  console.log(" userFromFront = ", userFromFront)
   let usersToFront = await models.user_give_service.takeAboutUsers(userFromFront[0])
 
   res.send(usersToFront)
@@ -61,12 +64,31 @@ router.post('/fetchSelectUsers', async function (req, res) {
 router.post('/fetchMeetings', async function (req, res) {
 
   console.log(JSON.stringify(req.body));
-
   const requestUser = req.body.user;
-  const meetingListByUser = await models.Pairs.readByPerson(requestUser)
+  const meetingListByUser = await models.Pairs.readByPerson(requestUser);
   res.send(meetingListByUser);
-})
+});
 
+router.post("/fetchRegister", (req, res) => {
+  setTimeout(
+    () =>
+      res.send({
+        email: "Vasya@MediaList.ru",
+        sequrityQuestion: "BlaBlaBla"
+      }),
+    1000
+  );
+});
 
+router.post("/fetchLogin", (req, res) => {
+  setTimeout(
+    () =>
+      res.send({
+        email: "Buba@mail.ru",
+        sequrityQuestion: "BlaBlaBla"
+      }),
+    1000
+  );
+});
 
 export default router;
