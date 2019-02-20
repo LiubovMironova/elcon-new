@@ -1,13 +1,33 @@
 import { LOGIN_TYPES } from "../actions/login-actions";
 
-const loginReducerInitState = {};
+const initialState = {
+  userMyInfo: {
+    email: "",
+    password: ""
+  },
+  isFetching: false
+};
 
-export default function loginReducer(state = loginReducerInitState, action) {
-  // console.log("state", state);
-  // console.log("action", action);
-  switch (action.type) {
-    case LOGIN_TYPES.ADD_LOGIN:
-      return { ...state, login: "entered login" };
+export default function (state = initialState, { type, payload }) {
+  switch (type) {
+    case LOGIN_TYPES.FETCH_LOGIN_START: {
+      return {
+        ...state,
+        isFetching: true
+      };
+    }
+    case LOGIN_TYPES.FETCH_LOGIN_SUCCESS: {
+      return {
+        userMyInfo: payload.userInfo,
+        isFetching: false
+      };
+    }
+    case LOGIN_TYPES.FETCH_LOGIN_ERROR: {
+      return {
+        ...state,
+        isFetching: false
+      };
+    }
     default:
       return state;
   }

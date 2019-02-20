@@ -24,7 +24,6 @@ const fetchRegisterErrorAC = () => ({
 // eslint-disable-next-line
 export const fetchRegisterThunkAC = userForm => {
   return async (dispatch, getState) => {
-    console.log("userForm =", userForm);
     dispatch(fetchRegisterStartAC());
     try {
       const userInfo = await fetch(PAGES.API.fetchRegister.path, {
@@ -36,7 +35,6 @@ export const fetchRegisterThunkAC = userForm => {
         body: JSON.stringify(userForm)
       });
       const userInfoResult = await userInfo.json();
-      console.log("userInfoResult", userInfoResult);
       dispatch(fetchRegisterSuccessAC(userInfoResult));
     } catch (e) {
       console.error(e);
