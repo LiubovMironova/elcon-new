@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import Type from "prop-types";
 import { Link } from "react-router-dom";
 import { push } from "connected-react-router";
-import elbrusImg from "./elbrus.png";
 import { PAGES } from "../../routes/pages";
 import { bemClassNameFactory } from "../../utils/bem";
 import { sayByeAC, sayHiAC } from "../../redux/actions/app-actions";
@@ -176,11 +175,11 @@ class App extends Component {
             </ul>
           </div>
         </nav>
-        <div className="container">
-          {/* ******************************************** */}
-          {/* <h1>{appName}</h1> */}
-          <div className={cn("header")}>
-            {/* {this.renderMenu()}
+        {/* <div className="container"> */}
+        {/* ******************************************** */}
+        {/* <h1>{appName}</h1> */}
+        <div className={cn("header")}>
+          {/* {this.renderMenu()}
           {this.renderTestButton()}
           <div className={cn("button-block")}>
             <h2>Buttons Redux</h2>
@@ -189,12 +188,13 @@ class App extends Component {
             {this.renderUserButtons()}
           </div>
           {this.renderThunkButton()} */}
-            {children}
-          </div>
-          {/* {children} */}
-          {/* {this.renderConsole()} */}
-          <div className={cn("footer")} />
         </div>
+
+
+        {children}
+        {/* {this.renderConsole()} */}
+        {/* <div className={cn("footer")} /> */}
+        {/* </div> */}
       </React.Fragment>
     );
   }
