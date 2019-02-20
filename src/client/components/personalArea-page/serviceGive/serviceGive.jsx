@@ -21,7 +21,7 @@ export default class ServiceGive extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentUser: ['1', 'Вася'],
+            currentUser: [],
             myServicesText: [],
             myServicesID: [],
             aboutServGive: '',
@@ -83,8 +83,30 @@ export default class ServiceGive extends Component {
 
     beginWork2 = async () => {
 
-        // console.log(" this.props.route.tag = ",  this.props.route.tag)
         console.log(" this.props.tag = ", this.props.tag)
+
+
+         // Подгрузка всех пользователей
+         const allUsers = await fetch(PAGES.API.fetchAllUsers.path)
+         const userList = await allUsers.json();
+        //  console.log(" userList   = ", userList)
+
+         // Подгрузка текущего пользователя
+        const currUserFromBack = await fetch(PAGES.API.fetchCurrUser.path)
+        const currUser = await currUserFromBack.json();
+        console.log(" currUser = ", currUser)
+
+        let userToState = []
+        userToState[0] = currUser
+
+        for(let i=0; i<userList.length; i++){
+            console.log(" userList[i] = ", userList[i])
+
+            if (currUser == userList[i][0]) {
+                    userToState[1] = userList[i][1]
+            }
+        }
+        await this.setState({ currentUser: userToState })
 
 
         let userFromBack =
