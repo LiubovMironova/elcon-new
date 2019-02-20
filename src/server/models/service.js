@@ -19,9 +19,6 @@ module.exports = (sequelize, DataTypes) => {
     for (let i = 0; i < result.length; i++) {
       array.push([result[i].id, result[i].service])
     }
-
-    console.log(" array = ", array)
-
     return array
   };
 

@@ -95,6 +95,10 @@ export const PAGES = {
     fetchAllUsers: {
       name: "fetchAllUsers",
       path: "/api/fetchAllUsers"
+    },
+    fetchCurrUser: {
+      name: "fetchCurrUser",
+      path: "/api/fetchCurrUser"
     }
   }
 };
