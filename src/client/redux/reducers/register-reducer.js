@@ -3,7 +3,8 @@ import { REGISTER_TYPES } from "../actions/register-actions";
 const initialState = {
   userMyInfo: {
     email: "",
-    sequrityQuestion: ""
+    password: ""
+    // sequrityQuestion: ""
   },
   isFetching: false
 };
