@@ -13,6 +13,9 @@ module.exports = {
       },
       service_id: {
         type: Sequelize.INTEGER
+      },
+      tag: {
+        type: Sequelize.STRING
       } //,
       // adout_gived_serv: {
       //   type: Sequelize.STRING
