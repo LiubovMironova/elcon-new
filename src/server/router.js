@@ -74,7 +74,7 @@ router.post("/fetchRegister", (req, res) => {
     () =>
       res.send({
         email: "Vasya@MediaList.ru",
-        sequrityQuestion: "BlaBlaBla"
+        password: "BlaBlaBla"
       }),
     1000
   );
@@ -85,7 +85,7 @@ router.post("/fetchLogin", (req, res) => {
     () =>
       res.send({
         email: "Buba@mail.ru",
-        sequrityQuestion: "BlaBlaBla"
+        password: "BlaBlaBla"
       }),
     1000
   );

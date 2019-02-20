@@ -132,29 +132,13 @@ class App extends Component {
     const { appName, children } = this.props;
     // console.log(this.props);
     return (
-      // <div className={cn()}>
       <React.Fragment>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="#">
-            Elcon
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
-
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
                 <div className="nav-link" href="#">
-                  <Link to={PAGES.home.path}>Home Page</Link>
+                  <Link to={PAGES.personalArea.path}>Elcon</Link>
                 </div>
               </li>
               <li className="nav-item">
@@ -167,40 +151,19 @@ class App extends Component {
                   <Link to={PAGES.login.path}>Login Page</Link>
                 </div>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <div className="nav-link" href="#">
                   <Link to={PAGES.personalArea.path}>Pesonal Page</Link>
                 </div>
-              </li>
+              </li> */}
             </ul>
           </div>
         </nav>
-        {/* <div className="container"> */}
-        {/* ******************************************** */}
-        {/* <h1>{appName}</h1> */}
-        <div className={cn("header")}>
-          {/* {this.renderMenu()}
-          {this.renderTestButton()}
-          <div className={cn("button-block")}>
-            <h2>Buttons Redux</h2>
-            {this.renderSayButtons()}
-            {this.renderRoutingButtons()}
-            {this.renderUserButtons()}
-          </div>
-          {this.renderThunkButton()} */}
-        </div>
-
-
+        <div className={cn("header")} />
         {children}
-        {/* {this.renderConsole()} */}
-        {/* <div className={cn("footer")} /> */}
-        {/* </div> */}
+        <div className={cn("footer")} />
       </React.Fragment>
     );
-  }
-
-  renderConsole() {
-    console.log("children", this.props.children);
   }
 
   renderTestButton() {
