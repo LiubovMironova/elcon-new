@@ -12,5 +12,25 @@ module.exports = (sequelize, DataTypes) => {
   user.associate = function(models) {
     // associations can be defined here
   };
+
+
+  user.readAll = async () => {
+
+    let result = await user.findAll({});
+
+    let array = []
+    for (let i = 0; i < result.length; i++) {
+      array.push([result[i].id, result[i].name])
+    }
+
+    console.log(" array = ", array)
+
+    return array
+  };
+
+
+
+
+  
   return user;
 };

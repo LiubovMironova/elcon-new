@@ -18,8 +18,10 @@ export default class Person extends Component {
       return (
             <div>
                 <h1>{this.props.name}</h1>
+                <p></p>
                 <p>могу предоставить услуги:</p>
                 {this.writeList(this.props.servCan)}
+                <p></p>
                 <p>хочу получить услуги:</p>
                 {this.writeList(this.props.servWant)}
                 <p></p>

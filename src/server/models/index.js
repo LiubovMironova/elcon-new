@@ -8,11 +8,11 @@ const env = process.env.NODE_ENV || "development";
 const db = {};
 
 const config = {
-  username: "postgres",
-  password: "postgres",
-  database: "db_elcon_new",
-  host: "127.0.0.1",
-  dialect: "postgres",
+  "username": "postgres",
+  "password": "2",
+  "database": "db_elcon_new_2",
+  "host": "127.0.0.1",
+  "dialect": "postgres",
   define: {
     timestamps: false
   }

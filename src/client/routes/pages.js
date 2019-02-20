@@ -19,10 +19,10 @@ export const PAGES = {
     name: "aboutMe",
     path: "/aboutMe"
   },
-  serviceWant: {
-    name: "serviceWant",
-    path: "/serviceWant"
-  },
+  // serviceWant: {
+  //   name: "serviceWant",
+  //   path: "/serviceWant"
+  // },
   serviceGive: {
     name: "serviceGive",
     path: "/serviceGive"
@@ -91,6 +91,10 @@ export const PAGES = {
     fetchRegister: {
       name: "fetchRegister",
       path: "/api/fetchRegister"
+    },
+    fetchAllUsers: {
+      name: "fetchAllUsers",
+      path: "/api/fetchAllUsers"
     }
   }
 };
