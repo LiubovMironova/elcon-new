@@ -34,6 +34,7 @@ const router = express.Router();
 // })
 
 router.get('/fetchCurrUser', async function (req, res) {
+  console.log("req.session.user = ", req.session.user )
   res.send(`${req.session.user}`)
   })
 
@@ -96,6 +97,7 @@ router.post('/fetchSelectUsers', async function (req, res) {
 router.post("/fetchRegister", async function(req, res) {
   console.log(JSON.stringify(req.body));
   const dbAnswerReg  = await models.user.entryStatus(req.body.email, req.body.password)
+  console.log("dbAnswerReg = ", dbAnswerReg  )
   res.status(200)
   res.send(dbAnswerReg)
 })
@@ -106,7 +108,6 @@ router.post("/fetchLogin", async function(req, res) {
   const dbAnswerLogin = await models.user.entryStatusLogin(req.body.email, req.body.password)
   console.log("dbAnswerLogin = ", dbAnswerLogin  )
   if (dbAnswerLogin != "неверные параметры входа") {
-    console.log("dbAnswerLogin = ", dbAnswerLogin)
     // await models.curr_user.writeCurrUser(dbAnswerLogin.id)
     req.session.user = dbAnswerLogin.id
   }

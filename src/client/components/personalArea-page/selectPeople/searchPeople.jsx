@@ -119,7 +119,8 @@ export default class PeopleList extends Component {
 
         // Подгрузка текущего пользователя
        const currUserFromBack = await fetch(PAGES.API.fetchCurrUser.path)
-       const currUser = await currUserFromBack.json();
+       console.log("  currUserFromBack = ",  currUserFromBack)
+       const currUser = await currUserFromBack.text();
        console.log(" currUser = ", currUser)
 
        let userToState = []
