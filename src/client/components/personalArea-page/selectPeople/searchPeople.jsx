@@ -19,7 +19,6 @@ export default class PeopleList extends Component {
         }
     }
 
-
     // changeFunction = async (g) => {
     //     await this.handleInputChange(g);
     //     await this.reWrite();
@@ -113,7 +112,6 @@ export default class PeopleList extends Component {
 
     beginWork2 = async () => {
 
-
         // Подгрузка всех пользователей
         const allUsers = await fetch(PAGES.API.fetchAllUsers.path)
         const userList = await allUsers.json();
@@ -136,8 +134,6 @@ export default class PeopleList extends Component {
        }
        await this.setState({ currentUser: userToState })
 
-
-
         await this.beginWork()
     }
 
@@ -157,7 +153,6 @@ export default class PeopleList extends Component {
                 <p></p>
                 <p>Отметьте галочкой услуги, которые вы хотите получить:</p>
                 < ServiceGive tag="W" />
-
                 <h1>Специалисты, которые вам подходят:</h1>
                 <p></p>
                 <button onClick={this.renderList}>Перерисовать</button>
