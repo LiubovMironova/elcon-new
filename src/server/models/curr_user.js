@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   curr_user.writeCurrUser = async (user) => {
-    await curr_user.destroy({})
+    await curr_user.destroy({truncate: true})
     await curr_user.create({ user_id: user })
   }
 
