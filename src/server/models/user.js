@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     login: DataTypes.STRING,
     name: DataTypes.STRING,
     email: DataTypes.STRING,
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    img: DataTypes.STRING
   }, {});
   user.associate = function (models) {
     // associations can be defined here
@@ -14,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     let result = await user.findAll({});
     let array = []
     for (let i = 0; i < result.length; i++) {
-      array.push([result[i].id, result[i].name])
+      array.push([result[i].id, result[i].name, result[i].img ])
     }
     return array
   };

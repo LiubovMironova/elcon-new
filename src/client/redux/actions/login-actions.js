@@ -37,7 +37,7 @@ export const fetchLoginThunkAC = userForm => {
       const userInfoResult = await userInfo.json();
       dispatch(fetchLoginSuccessAC(userInfoResult));
     } catch (e) {
-      console.error(e);
+      // console.error(e);
       dispatch(fetchLoginErrorAC());
     }
   };
