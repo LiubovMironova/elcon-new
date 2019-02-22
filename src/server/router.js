@@ -34,7 +34,7 @@ const router = express.Router();
 // })
 
 router.get('/fetchCurrUser', async function (req, res) {
-  console.log("req.session.user = ", req.session.user )
+  console.log("ЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦreq.session.user = ", req.session.user )
   res.send(`${req.session.user}`)
   })
 

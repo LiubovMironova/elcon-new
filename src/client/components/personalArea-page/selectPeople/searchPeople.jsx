@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Person from './specialist';
 import { PAGES } from '../../../routes/pages';
 import ServiceGive from '../serviceGive/serviceGive';
+import pic from '../../../pictures/пппп.jpg'
 
 
 
@@ -13,6 +14,7 @@ export default class PeopleList extends Component {
             currentUser: [],
             allServices: [],
             user: [],
+            userImg: [],
             servGive: [],
             servWant: [],
             item: []
@@ -32,6 +34,8 @@ export default class PeopleList extends Component {
                 <div key={i} >
                     < Person
                         name={this.state.user[i]}
+                        userImg={ 'img2'} 
+                        // userImg={this.state.userImg[i]}
                         servCan={this.state.servGive[i]}
                         servWant={this.state.servWant[i]}
                     // handleClick={() => this.changeFunction()}
@@ -59,6 +63,7 @@ export default class PeopleList extends Component {
         let takeFromSeq = usersBack
         //-----------------------------------------
         let userArr = Array(takeFromSeq.length).fill('');
+        let userArrImg = Array(takeFromSeq.length).fill('');
         let canArr = Array(takeFromSeq.length).fill('');
         let wantArr = Array(takeFromSeq.length).fill('');
 
@@ -93,11 +98,13 @@ export default class PeopleList extends Component {
             for (let i = 0; i < userList.length; i++) {
                 if (userArr[k] == userList[i][0]) {
                     userArr[k] = userList[i][1]
+                    userArrImg[k] = userList[i][2]
                 }
             }
         }
 
         await this.setState({ user: userArr })
+        await this.setState({ userImg: userArrImg })
         await this.setState({ servGive: canArr })
         await this.setState({ servWant: wantArr })
 
@@ -145,6 +152,8 @@ export default class PeopleList extends Component {
     render() {
         return (
             <div>
+              
+                <img src={ pic } width='200px' />
                 <h1>{this.state.currentUser[1]}, личный кабинет</h1>
                 <h1>Услуги могу</h1>
                 <p></p>
