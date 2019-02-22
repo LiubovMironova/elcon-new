@@ -9,7 +9,17 @@ import img7 from '../../../pictures/image7.jpg'
 import img8 from '../../../pictures/image8.jpg'
 import img9 from '../../../pictures/image9.jpg'
 
+
 export default class Person extends Component {
+
+
+  constructor(props) {
+    super(props);
+    this.state = {
+       pics: [],
+    }
+}
+
 
   writeList = (arr) => {
     const tempList = [];
@@ -23,20 +33,33 @@ export default class Person extends Component {
     return tempList;
   }
 
+
+  beginWork = async () => {
+let arrOfPics = Array(9).fill('');
+arrOfPics[1] = img1
+arrOfPics[2] = img2
+arrOfPics[3] = img3
+arrOfPics[4] = img4
+arrOfPics[5] = img5
+arrOfPics[6] = img6
+arrOfPics[7] = img7
+arrOfPics[8] = img8
+arrOfPics[9] = img9
+
+await this.setState({ pics: arrOfPics })
+}
+
+componentDidMount() {
+  this.beginWork();
+}
+
   render() {
     return (
       <div>
         <h1>{this.props.name}</h1>
-        <p></p>
-        {this.props.userImg}
-         <p></p>
-        '../../../pictures/image1.jpg'
-        <p></p>
-        <img src={ this.props.userImg } width='200px' />
-        <p></p>
-        <img src= { '../../../pictures/image1.jpg' } width='200px' /> 
-        <p></p>
-        {/* <img src={  img1} width='200px' /> */}
+        <p></p> 
+        <img src=  {this.state.pics[this.props.numPic]}  width='200px' /> 
+       
         <p></p>
         <p>могу предоставить услуги:</p>
         {this.writeList(this.props.servCan)}

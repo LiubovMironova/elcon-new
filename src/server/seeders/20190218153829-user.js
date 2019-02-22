@@ -7,49 +7,49 @@ module.exports = {
       {
         login: "vvv", name: "Василий Иванов",
         email: "v@v.v", password: "vvv",
-        img: '../../../pictures/image1.jpg'
+        img: '1'
       },
       {
         login: "ppp", name: "Петр Милославский",
         email: "p@p.p", password: "ppp",
-        img: '../../../pictures/image2.jpg'
+        img: '2'
       },
       {
         login: "mmm", name: "Мария Малиина",
         email: "m@m.m", password: "mmm",
-        img: '../../../pictures/image3.jpg'
+        img: '3'
       },
 
       {
         login: "nnn", name: "Николай Петров",
         email: "n@n.n", password: "nnn",
-        img: '../../../pictures/image4.jpg'
+        img: '4'
       },
       {
         login: "ddd", name: "Дмитрий Висковский",
         email: "d@d.d", password: "ddd",
-        img: '../../../pictures/image5.jpg'
+        img: '5'
       },
       {
         login: "ggg", name: "Григорий Тюль",
         email: "g@g.g", password: "ggg",
-        img: '../../../pictures/image6.jpg'
+        img: '6'
       },
 
       {
         login: "aaa", name: "Анна Чернышевская",
         email: "a@a.a", password: "aaa",
-        img: '../../../pictures/image7.jpg'
+        img: '7'
       },
       {
         login: "lll", name: "Люся Нек",
         email: "l@l.l", password: "lll",
-        img: '../../../pictures/image8.jpg'
+        img: '8'
       },
       {
         login: "bbb", name: "Борис Харитонов",
         email: "b@b.b", password: "bbb",
-        img: '../../../pictures/image9.jpg'
+        img: '9'
       }
     ]
 
