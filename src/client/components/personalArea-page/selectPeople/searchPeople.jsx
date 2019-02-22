@@ -3,6 +3,7 @@ import Person from "./specialist";
 import { PAGES } from "../../../routes/pages";
 import ServiceGive from "../serviceGive/serviceGive";
 import "./searchPeople.css";
+import pic from "../../../pictures/пппп.jpg";
 
 export default class PeopleList extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ export default class PeopleList extends Component {
       currentUser: [],
       allServices: [],
       user: [],
+      userImg: [],
       servGive: [],
       servWant: [],
       item: []
@@ -39,7 +41,6 @@ export default class PeopleList extends Component {
                     <input type="checkbox" className="form-check-input" />
                     Занятие йогой
                   </label>
-                </div>
               </li> */}
 
               <li className="nav-item">
@@ -175,69 +176,97 @@ export default class PeopleList extends Component {
       wantArr[i] = takeFromSeq[i][2];
     }
 
-    // Подгрузка всех пользователей
-    const allUsers = await fetch(PAGES.API.fetchAllUsers.path);
-    const userList = await allUsers.json();
-    console.log(" userList   = ", userList);
+    beginWork = async () => {
+      let usersFromBack = await fetch(PAGES.API.fetchSelectUsers.path, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ user: this.state.currentUser })
+      });
 
-    // Подгрузка всех услуг
-    const services = await fetch(PAGES.API.fetchServices.path);
-    const serviceList = await services.json();
+      let usersBack = await usersFromBack.json();
+      let takeFromSeq = usersBack;
+      //-----------------------------------------
+      let userArr = Array(takeFromSeq.length).fill("");
+      let userArrImg = Array(takeFromSeq.length).fill("");
+      let canArr = Array(takeFromSeq.length).fill("");
+      let wantArr = Array(takeFromSeq.length).fill("");
 
-    for (let k = 0; k < takeFromSeq.length; k++) {
-      for (let i = 0; i < serviceList.length; i++) {
-        for (let g = 0; g < canArr[k].length; g++) {
-          if (canArr[k][g] == serviceList[i][0]) {
-            canArr[k][g] = serviceList[i][1];
+      for (let i = 0; i < takeFromSeq.length; i++) {
+        userArr[i] = takeFromSeq[i][0][0];
+        canArr[i] = takeFromSeq[i][1];
+        wantArr[i] = takeFromSeq[i][2];
+      }
+
+      // Подгрузка всех пользователей
+      const allUsers = await fetch(PAGES.API.fetchAllUsers.path);
+      const userList = await allUsers.json();
+      console.log(" userList   = ", userList);
+
+      // Подгрузка всех услуг
+      const services = await fetch(PAGES.API.fetchServices.path);
+      const serviceList = await services.json();
+
+      for (let k = 0; k < takeFromSeq.length; k++) {
+        for (let i = 0; i < serviceList.length; i++) {
+          for (let g = 0; g < canArr[k].length; g++) {
+            if (canArr[k][g] == serviceList[i][0]) {
+              canArr[k][g] = serviceList[i][1];
+            }
+          }
+          for (let g = 0; g < wantArr[k].length; g++) {
+            if (wantArr[k][g] == serviceList[i][0]) {
+              wantArr[k][g] = serviceList[i][1];
+            }
           }
         }
-        for (let g = 0; g < wantArr[k].length; g++) {
-          if (wantArr[k][g] == serviceList[i][0]) {
-            wantArr[k][g] = serviceList[i][1];
+        for (let i = 0; i < userList.length; i++) {
+          if (userArr[k] == userList[i][0]) {
+            userArr[k] = userList[i][1];
+            userArrImg[k] = userList[i][2];
           }
         }
       }
+
+      await this.setState({ user: userArr });
+      await this.setState({ userImg: userArrImg });
+      await this.setState({ servGive: canArr });
+      await this.setState({ servWant: wantArr });
+
+      this.reWrite();
+    };
+
+    renderList = async () => {
+      await this.beginWork();
+    };
+
+    beginWork2 = async () => {
+      // Подгрузка всех пользователей
+      const allUsers = await fetch(PAGES.API.fetchAllUsers.path);
+      const userList = await allUsers.json();
+      //  console.log(" userList   = ", userList)
+
+      // Подгрузка текущего пользователя
+      const currUserFromBack = await fetch(PAGES.API.fetchCurrUser.path);
+      console.log("  currUserFromBack = ", currUserFromBack);
+      const currUser = await currUserFromBack.text();
+      console.log(" currUser = ", currUser);
+
+      let userToState = [];
+      userToState[0] = currUser;
+
       for (let i = 0; i < userList.length; i++) {
-        if (userArr[k] == userList[i][0]) {
-          userArr[k] = userList[i][1];
+        console.log(" userList[i] = ", userList[i]);
+
+        if (currUser == userList[i][0]) {
+          userToState[1] = userList[i][1];
         }
       }
-    }
+      await this.setState({ currentUser: userToState });
 
-    await this.setState({ user: userArr });
-    await this.setState({ servGive: canArr });
-    await this.setState({ servWant: wantArr });
-
-    this.reWrite();
-  };
-
-  renderList = async () => {
-    await this.beginWork();
-  };
-
-  beginWork2 = async () => {
-    // Подгрузка всех пользователей
-    const allUsers = await fetch(PAGES.API.fetchAllUsers.path);
-    const userList = await allUsers.json();
-    //  console.log(" userList   = ", userList)
-
-    // Подгрузка текущего пользователя
-    const currUserFromBack = await fetch(PAGES.API.fetchCurrUser.path);
-    const currUser = await currUserFromBack.json();
-    console.log(" currUser = ", currUser);
-
-    let userToState = [];
-    userToState[0] = currUser;
-
-    for (let i = 0; i < userList.length; i++) {
-      console.log(" userList[i] = ", userList[i]);
-
-      if (currUser == userList[i][0]) {
-        userToState[1] = userList[i][1];
-      }
-    }
-    await this.setState({ currentUser: userToState });
-
-    await this.beginWork();
+      await this.beginWork();
+    };
   };
 }

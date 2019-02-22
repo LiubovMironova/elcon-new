@@ -97,8 +97,10 @@ export default class ServiceGive extends Component {
     const currUser = await currUserFromBack.json();
     console.log(" currUser = ", currUser);
 
-    let userToState = [];
-    userToState[0] = currUser;
+         // Подгрузка текущего пользователя
+        const currUserFromBack = await fetch(PAGES.API.fetchCurrUser.path)
+        const currUser = await currUserFromBack.text();
+        console.log(" currUser = ", currUser)
 
     for (let i = 0; i < userList.length; i++) {
       console.log(" userList[i] = ", userList[i]);

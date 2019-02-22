@@ -13,30 +13,16 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING
-      } //,
-      // phone: {
-      //   type: Sequelize.STRING
-      // },
-      // email: {
-      //   type: Sequelize.STRING
-      // },
-      // password: {
-      //   type: Sequelize.STRING
-      // },
-      // about_me: {
-      //   type: Sequelize.STRING
-      // },
-      // geo_location: {
-      //   type: Sequelize.BOOLEAN
-      // },
-      // createdAt: {
-      //   allowNull: false,
-      //   type: Sequelize.DATE
-      // },
-      // updatedAt: {
-      //   allowNull: false,
-      //   type: Sequelize.DATE
-      // }
+      },
+      email: {
+        type: Sequelize.STRING
+      },
+      password: {
+        type: Sequelize.STRING
+      },
+      img: {
+        type: Sequelize.STRING
+      }
     });
   },
   down: (queryInterface, Sequelize) => {

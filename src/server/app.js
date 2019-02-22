@@ -6,6 +6,7 @@ import handlebars from "handlebars";
 import bodyParser from "body-parser";
 import config from "./config/default";
 import router from "./router";
+import session from "express-session";
 
 const winston = require("winston");
 const expressWinston = require("express-winston");
@@ -39,7 +40,12 @@ app.use(
     colorize: false
   })
 );
-
+ // ------------------------
+app.use(session({
+  secret: 'keyboard cat',
+  cookie: {}
+}))
+ // ------------------------
 app.use("/api", router);
 
 app.use("*", (req, res) => {
