@@ -7,7 +7,12 @@ class ServicesList extends Component {
       <li className="nav-item">
         <div className="form-check">
           <label className="form-check-label">
-            <input type="checkbox" className="form-check-input" checked={this.props.checked} onChange={this.props.onChangeFunc} />
+            <input
+              type="checkbox"
+              className="form-check-input"
+              checked={this.props.checked}
+              onChange={this.props.onChangeFunc}
+            />
             {this.props.serv}
           </label>
         </div>
@@ -97,10 +102,8 @@ export default class ServiceGive extends Component {
     const currUser = await currUserFromBack.json();
     console.log(" currUser = ", currUser);
 
-         // Подгрузка текущего пользователя
-        const currUserFromBack = await fetch(PAGES.API.fetchCurrUser.path)
-        const currUser = await currUserFromBack.text();
-        console.log(" currUser = ", currUser)
+    let userToState = [];
+    userToState[0] = currUser;
 
     for (let i = 0; i < userList.length; i++) {
       console.log(" userList[i] = ", userList[i]);
