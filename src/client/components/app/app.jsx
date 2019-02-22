@@ -133,23 +133,24 @@ class App extends Component {
     // console.log(this.props);
     return (
       <React.Fragment>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <nav className="navbar navbar-expand-md fixed-top bg-dark">
+          {/* <div className="collapse navbar-collapse" id="navbarSupportedContent"> */}
+          <Link to={PAGES.personalArea.path} className="navbar-brand">Elcon</Link>
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
+              {/* <li className="nav-item active">
                 <div className="nav-link" href="#">
                   <Link to={PAGES.personalArea.path}>Elcon</Link>
                 </div>
+              </li> */}
+              <li className="nav-item">
+                {/* <div className="nav-link" href="#"> */}
+                  <Link to={PAGES.register.path} className="nav-link">Register Page</Link>
+                {/* </div> */}
               </li>
               <li className="nav-item">
-                <div className="nav-link" href="#">
-                  <Link to={PAGES.register.path}>Register Page</Link>
-                </div>
-              </li>
-              <li className="nav-item">
-                <div className="nav-link" href="#">
-                  <Link to={PAGES.login.path}>Login Page</Link>
-                </div>
+                {/* <div className="nav-link" href="#"> */}
+                  <Link to={PAGES.login.path} className="nav-link">Login Page</Link>
+                {/* </div> */}
               </li>
               {/* <li className="nav-item">
                 <div className="nav-link" href="#">
@@ -157,7 +158,7 @@ class App extends Component {
                 </div>
               </li> */}
             </ul>
-          </div>
+          {/* </div> */}
         </nav>
         <div className={cn("header")} />
         {children}
