@@ -5,8 +5,8 @@ module.exports = {
 
     let userObject = [
       {
-        login: "vvv", name: "Василий Иванов",
-        email: "v@v.v", password: "vvv",
+        login: "mmm", name: "Мария Малинина",
+        email: "m@m.m", password: "mmm",
         img: '1'
       },
       {
@@ -15,18 +15,18 @@ module.exports = {
         img: '2'
       },
       {
-        login: "mmm", name: "Мария Малиина",
+        login: "mmm", name: "Марина Золотая",
         email: "m@m.m", password: "mmm",
         img: '3'
       },
 
       {
-        login: "nnn", name: "Николай Петров",
+        login: "nnn", name: "Наталья Петрова",
         email: "n@n.n", password: "nnn",
         img: '4'
       },
       {
-        login: "ddd", name: "Дмитрий Висковский",
+        login: "ddd", name: "Дитрия Дитрировна",
         email: "d@d.d", password: "ddd",
         img: '5'
       },
@@ -37,17 +37,17 @@ module.exports = {
       },
 
       {
-        login: "aaa", name: "Анна Чернышевская",
+        login: "aaa", name: "Али Хан",
         email: "a@a.a", password: "aaa",
         img: '7'
       },
       {
-        login: "lll", name: "Люся Нек",
+        login: "lll", name: "Джим Нельсбор",
         email: "l@l.l", password: "lll",
         img: '8'
       },
       {
-        login: "bbb", name: "Борис Харитонов",
+        login: "bbb", name: "Люси Хью",
         email: "b@b.b", password: "bbb",
         img: '9'
       }

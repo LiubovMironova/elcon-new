@@ -16,7 +16,6 @@ const router = express.Router();
 //   res.send();
 // });
 
-
 // router.get('/fetchCurrUser', async function (req, res) {
 //   // const currUser = await models.curr_user.readAll()
 //   // console.log(" currUser = ", currUser )
@@ -33,47 +32,46 @@ const router = express.Router();
 //   res.send(currUser);
 // })
 
-router.get('/fetchCurrUser', async function (req, res) {
-  console.log("ЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦreq.session.user = ", req.session.user )
-  res.send(`${req.session.user}`)
-  })
+router.get("/fetchCurrUser", async (req, res) => {
+  console.log("ЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦЦreq.session.user = ", req.session.user);
+  res.send(`${req.session.user}`);
+});
 
-router.get('/fetchAllUsers', async function (req, res) {
-  const usersList = await models.user.readAll()
+router.get("/fetchAllUsers", async (req, res) => {
+  const usersList = await models.user.readAll();
   res.send(usersList);
-})
+});
 
-
-router.get('/fetchServices', async function (req, res) {
-  const serviceList = await models.service.readAll()
+router.get("/fetchServices", async (req, res) => {
+  const serviceList = await models.service.readAll();
   res.send(serviceList);
-})
+});
 
-router.post('/fetchUserArrayAbout', async function (req, res) {
+router.post("/fetchUserArrayAbout", async (req, res) => {
   console.log(JSON.stringify(req.body));
   const requestUser = req.body.user;
   const requestTag = req.body.tag;
 
-  const userWantList = await models.user_give_service.readAll(requestUser, requestTag)
-  res.send(userWantList)
-})
+  const userWantList = await models.user_give_service.readAll(requestUser, requestTag);
+  res.send(userWantList);
+});
 
-router.post('/fetchWriteGive', async function (req, res) {
+router.post("/fetchWriteGive", async (req, res) => {
   console.log(JSON.stringify(req.body));
-  const giveUser = req.body.user
-  const giveServ = req.body.array
-  const giveTag = req.body.tag
-  await models.user_give_service.change(giveUser, giveServ, giveTag)
-  res.send()
-})
+  const giveUser = req.body.user;
+  const giveServ = req.body.array;
+  const giveTag = req.body.tag;
+  await models.user_give_service.change(giveUser, giveServ, giveTag);
+  res.send();
+});
 
-router.post('/fetchSelectUsers', async function (req, res) {
+router.post("/fetchSelectUsers", async (req, res) => {
   console.log(JSON.stringify(req.body));
-  let userFromFront = req.body.user
-  let usersToFront = await models.user_give_service.takeAboutUsers(userFromFront[0])
+  let userFromFront = req.body.user;
+  let usersToFront = await models.user_give_service.takeAboutUsers(userFromFront[0]);
 
-  res.send(usersToFront)
-})
+  res.send(usersToFront);
+});
 
 // router.post('/fetchMeetings', async function (req, res) {
 
@@ -94,25 +92,24 @@ router.post('/fetchSelectUsers', async function (req, res) {
 //   );
 // });
 
-router.post("/fetchRegister", async function(req, res) {
+router.post("/fetchRegister", async (req, res) => {
   console.log(JSON.stringify(req.body));
-  const dbAnswerReg  = await models.user.entryStatus(req.body.email, req.body.password)
-  console.log("dbAnswerReg = ", dbAnswerReg  )
-  res.status(200)
-  res.send(dbAnswerReg)
-})
+  const dbAnswerReg = await models.user.entryStatus(req.body.email, req.body.password);
+  console.log("dbAnswerReg = ", dbAnswerReg);
+  res.status(200);
+  res.send(dbAnswerReg);
+});
 
-
-router.post("/fetchLogin", async function(req, res) {
+router.post("/fetchLogin", async (req, res) => {
   console.log(JSON.stringify(req.body));
-  const dbAnswerLogin = await models.user.entryStatusLogin(req.body.email, req.body.password)
-  console.log("dbAnswerLogin = ", dbAnswerLogin  )
+  const dbAnswerLogin = await models.user.entryStatusLogin(req.body.email, req.body.password);
+  console.log("dbAnswerLogin = ", dbAnswerLogin);
   if (dbAnswerLogin != "неверные параметры входа") {
     // await models.curr_user.writeCurrUser(dbAnswerLogin.id)
-    req.session.user = dbAnswerLogin.id
+    req.session.user = dbAnswerLogin.id;
   }
-  res.status(200)
-  res.send(dbAnswerLogin)
-})
+  res.status(200);
+  res.send(dbAnswerLogin);
+});
 
 export default router;

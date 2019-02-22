@@ -1,6 +1,6 @@
 export const PAGES = {
-  home: {
-    name: "home",
+  personalArea: {
+    name: "personalArea",
     path: "/"
   },
   info: {
@@ -35,10 +35,10 @@ export const PAGES = {
     name: "meetings",
     path: "/meetings"
   },
-  personalArea: {
-    name: "personalArea",
-    path: "/personalArea"
-  },
+  // personalArea: {
+  //   name: "personalArea",
+  //   path: "/personalArea"
+  // },
   register: {
     name: "register",
     path: "/register"

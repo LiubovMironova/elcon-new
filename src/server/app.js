@@ -51,7 +51,7 @@ app.use("/api", router);
 app.use("*", (req, res) => {
   const template = handlebars.compile(fs.readFileSync(path.join(__dirname, "index.hbs"), "utf8"));
   const context = {
-    title: "Express React Skeleton"
+    title: "Elcon"
   };
   res.send(template(context));
 });
