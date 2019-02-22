@@ -34,7 +34,8 @@ export default class PeopleList extends Component {
                 <div key={i} >
                     < Person
                         name={this.state.user[i]}
-                        userImg={ 'img2'} 
+                        // userImg={ 'img2'} 
+                        numPic={this.state.userImg[i]}
                         // userImg={this.state.userImg[i]}
                         servCan={this.state.servGive[i]}
                         servWant={this.state.servWant[i]}
