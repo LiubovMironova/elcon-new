@@ -34,9 +34,17 @@ export default class PeopleList extends Component {
                   Все услуги<span className="sr-only">(current)</span>
                 </a>
               </li>
-              <ServiceGive tag="G" />
-              sdasd
               <ServiceGive tag="W" />
+            </ul>
+              <hr />
+              <ul className="nav nav-pills flex-column">
+              <li className="nav-item">
+                <a className="nav-link active" href="#">
+                  Все услуги<span className="sr-only">(current)</span>
+                </a>
+              </li>
+              <ServiceGive tag="G" />
+            </ul>
               {/* <hr /> */}
               {/* <li className="nav-item">
                 <div className="form-check">
@@ -62,24 +70,23 @@ export default class PeopleList extends Component {
                   </label>
                 </div>
               </li> */}
-            </ul>
+            {/* </ul> */}
             {/* <h1>Специалисты, которые вам подходят:</h1>
             <p />
             <button onClick={this.renderList}>Перерисовать</button>
             <p />
             {this.state.item} */}
           </nav>
-
           <main className="offset-md-3 col-sm-9 offset-sm-3 col-md-8 offset-md-3 pt-3">
-            <h1>Специалисты</h1>
+            {/* <h1>Специалисты</h1> */}
 
             <section className="d-flex flex-column placeholders">
-            <h1>Специалисты, которые вам подходят:</h1>
-            <p />
-            <button onClick={this.renderList}>Перерисовать</button>
-            <p />
-            {this.state.item}
-              <div className="container card mb-3">
+              <h1>Специалисты, которые вам подходят:</h1>
+              <p />
+              <button onClick={this.renderList}>Перерисовать</button>
+              <p />
+              {this.state.item}
+              {/* <div className="container card mb-3">
                 <div className="row  p-3">
                   <div className="col-sm-3">
                     <img className="rounded" src={pic} width="200px" alt="Card image cap" />
@@ -90,9 +97,9 @@ export default class PeopleList extends Component {
                     </p>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="container card mb-3">
+              {/* <div className="container card mb-3">
                 <div className="row  p-3">
                   <div className="col-sm-3">
                     <img className="rounded" src="img/man.jpg" width="200px" alt="Card image cap" />
@@ -103,9 +110,9 @@ export default class PeopleList extends Component {
                     </p>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="container card mb-3">
+              {/* <div className="container card mb-3">
                 <div className="row  p-3">
                   <div className="col-sm-3">
                     <img className="rounded" src="img/man.jpg" width="200px" alt="Card image cap" />
@@ -116,28 +123,28 @@ export default class PeopleList extends Component {
                     </p>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </section>
           </main>
         </div>
       </div>
-      //   <div>
-      //     <h1>{this.state.currentUser[1]}, личный кабинет</h1>
-      //     <h1>Услуги могу</h1>
-      //     <p />
-      //     <p>Отметьте галочкой услуги, которые вы можете выполнить:</p>
-      //     <ServiceGive tag="G" />
-      //     <h1>Услуги хочу</h1>
-      //     <p />
-      //     <p>Отметьте галочкой услуги, которые вы хотите получить:</p>
-      //     <ServiceGive tag="W" />
+        // <div>
+        //   <h1>{this.state.currentUser[1]}, личный кабинет</h1>
+        //   <h1>Услуги могу</h1>
+        //   <p />
+        //   <p>Отметьте галочкой услуги, которые вы можете выполнить:</p>
+        //   <ServiceGive tag="G" />
+        //   <h1>Услуги хочу</h1>
+        //   <p />
+        //   <p>Отметьте галочкой услуги, которые вы хотите получить:</p>
+        //   <ServiceGive tag="W" />
 
-      //     <h1>Специалисты, которые вам подходят:</h1>
-      //     <p />
-      //     <button onClick={this.renderList}>Перерисовать</button>
-      //     <p />
-      //     {this.state.item}
-      //   </div>
+        //   <h1>Специалисты, которые вам подходят:</h1>
+        //   <p />
+        //   <button onClick={this.renderList}>Перерисовать</button>
+        //   <p />
+        //   {this.state.item}
+        // </div>
     );
   }
 
@@ -154,10 +161,12 @@ export default class PeopleList extends Component {
         <div key={i}>
           <Person
             name={this.state.user[i]}
+            numPic={this.state.userImg[i]}
             servCan={this.state.servGive[i]}
             servWant={this.state.servWant[i]}
             // handleClick={() => this.changeFunction()}
           />
+          {/* 111111111111111111 */}
         </div>
       );
     }
@@ -222,6 +231,8 @@ export default class PeopleList extends Component {
     await this.setState({ userImg: userArrImg });
     await this.setState({ servGive: canArr });
     await this.setState({ servWant: wantArr });
+
+    console.log("!!!!!!!!!!!!!! = !!!!!!!!!!!!!", this.state.userImg);
 
     this.reWrite();
   };
